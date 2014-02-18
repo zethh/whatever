@@ -347,6 +347,16 @@ $sql_array = array(
 
 $sql_approved = ($auth->acl_get('m_approve', $forum_id)) ? '' : 'AND t.topic_approved = 1';
 
+// BEGIN Topics Only Visible to OP MOD
+//Determine if forum is op only view only or user has permission to view all topics
+if($forum_data['forum_op_only_view'] && !$auth->acl_get('f_op_only_view', $forum_id))
+{
+	$forum_op_only_view = 'AND (t.topic_poster = ' . $user->data['user_id'] . ' OR t.topic_type =' . POST_STICKY . ')';
+}
+else
+	$forum_op_only_view = '';
+// END Topics Only Visible to OP MOD
+
 if ($user->data['is_registered'])
 {
 	if ($config['load_db_track'])
@@ -449,6 +459,7 @@ $sql = 'SELECT t.topic_id
 	WHERE $sql_where
 		AND t.topic_type IN (" . POST_NORMAL . ', ' . POST_STICKY . ")
 		$sql_approved
+		$forum_op_only_view
 		$sql_limit_time
 	ORDER BY t.topic_type " . ((!$store_reverse) ? 'DESC' : 'ASC') . ', ' . $sql_sort_order;
 $result = $db->sql_query_limit($sql, $sql_limit, $sql_start);

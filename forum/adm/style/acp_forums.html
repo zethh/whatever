@@ -237,10 +237,12 @@
 			<dd><label><input type="radio" class="radio" name="display_recent" value="1"<!-- IF S_DISPLAY_ACTIVE_TOPICS --> id="display_recent" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
 				<label><input type="radio" class="radio" name="display_recent" value="0"<!-- IF not S_DISPLAY_ACTIVE_TOPICS --> id="display_recent" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
 		</dl>
+		
 		<dl>
-			<dt><label for="topics_per_page">{L_FORUM_TOPICS_PAGE}:</label><br /><span>{L_FORUM_TOPICS_PAGE_EXPLAIN}</span></dt>
-			<dd><input type="text" id="topics_per_page" name="topics_per_page" value="{TOPICS_PER_PAGE}" size="4" maxlength="4" /></dd>
+			<dt><label for="forum_op_only_view">{L_FORUM_OP_ONLY_VIEW}:</label><br /><span>{L_FORUM_OP_ONLY_VIEW_EXPLAIN}</span></dt>
+			<dd><input type="radio" class="radio" name="op_only_view" value="1"<!-- IF S_OP_ONLY_VIEW_ENABLE --> id="op_only_view" checked="checked"<!-- ENDIF --> /> {L_YES} &nbsp; <input type="radio" class="radio" name="op_only_view" value="0"<!-- IF not S_OP_ONLY_VIEW_ENABLE --> id="op_only_view" checked="checked"<!-- ENDIF --> /> {L_NO}</dd>
 		</dl>
+
 		</fieldset>
 
 		<fieldset>
