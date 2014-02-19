@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="./modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+<header>
+	<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+	<title>Topics Only Visible to OP</title>
+	<description>Topics in spcified forum are only visible to original poster and other authorized users.</description>
+	<author-notes>Once installed an option under each forum (ACP -&gt; Forums -&gt; Manage Forums -&gt; [forum name] edit -&gt; General forum settings) to turn on/off and a new permission (ACP -&gt; Permissions -&gt; Forum Based permissions -&gt; Users' or Groups' Forum Permissions -&gt; Misc) to set who can see original poster view only topics.</author-notes>
+	<author-group>
+		<author>
+			<realname>JC</realname>
+			<email>jcthebuilder1@yahoo.com</email>
+			<username>BondGamer</username>
+			<homepage>www.jcthebuilder.com</homepage>
+			<contributions />
+	    </author>
+	</author-group>
+	<mod-version>0.8.0</mod-version>
+	<installation>
+		<level>intermediate</level>
+		<time>900</time>
+		<target-version>3.0.5</target-version>
+	</installation>
+	<meta name="generator" content="Almsamim.com" />
+</header>
+<action-group>
+	<sql><![CDATA[INSERT INTO phpbb_acl_options (auth_option, is_global, is_local, founder_only) VALUES ('f_op_only_view', 0, 1, 0);
+ALTER TABLE `phpbb_forums` ADD `forum_op_only_view` BOOL NOT NULL DEFAULT 0]]></sql>
+	<open src="search.php">
+		<edit>
+			<find><![CDATA[$sql = 'SELECT f.forum_id, f.forum_name, f.parent_id, f.forum_type, f.right_id, f.forum_password,]]></find>
+			<action type="after-add"><![CDATA[f.forum_op_only_view,]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA[if ($row['forum_password'] && $row['user_id'] != $user->data['user_id'])
+		{
+			$ex_fid_ary[] = (int) $row['forum_id'];
+			continue;
+		}]]></find>
+			<action type="after-add"><![CDATA[// BEGIN Topics Only Visible to OP MOD
+		//Check if user has op only view and if forum has it enabled, if not skip forum for searching
+		if ($row['forum_op_only_view'] && !$auth->acl_get('f_op_only_view', $row['forum_id']))
+		{
+			$ex_fid_ary[] = (int) $row['forum_id'];
+			continue;
+		}
+		// END Topics Only Visible to OP MOD]]></action>
+		</edit>	</open>
+
+	<open src="viewforum.php">
+		<edit>
+			<find><![CDATA[$sql_approved = ($auth->acl_get('m_approve', $forum_id)) ? '' : 'AND t.topic_approved = 1';]]></find>
+			<action type="after-add"><![CDATA[// BEGIN Topics Only Visible to OP MOD
+//Determine if forum is op only view only or user has permission to view all topics
+if($forum_data['forum_op_only_view'] && !$auth->acl_get('f_op_only_view', $forum_id))
+{
+	$forum_op_only_view = 'AND (t.topic_poster = ' . $user->data['user_id'] . ' OR t.topic_type =' . POST_STICKY . ')';
+}
+else
+	$forum_op_only_view = '';
+// END Topics Only Visible to OP MOD]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA[$sql = 'SELECT t.topic_id
+	FROM ' . TOPICS_TABLE . " t
+	WHERE $sql_where
+		AND t.topic_type IN (" . POST_NORMAL . ', ' . POST_STICKY . ")
+		$sql_approved]]></find>
+			<action type="after-add"><![CDATA[$forum_op_only_view]]></action>
+		</edit>	</open>
+
+	<open src="viewtopic.php">
+		<edit>
+			<find><![CDATA[$topic_id = (int) $topic_data['topic_id'];]]></find>
+			<action type="after-add"><![CDATA[// BEGIN Topics Only Visible to OP MOD
+// If original poster only view is enabled, check if user has permission or is the topic poster
+if($topic_data['forum_op_only_view'] && $user->data['user_id'] != $topic_data['topic_poster'] && $topic_data['topic_type'] != POST_STICKY && !$auth->acl_get('f_op_only_view', $forum_id))
+{
+	trigger_error('NOT_AUTHORISED');
+}
+// END Topics Only Visible to OP MOD]]></action>
+		</edit>	</open>
+
+	<open src="adm/style/acp_forums.html">
+		<edit>
+			<find><![CDATA[<dl>
+			<dt><label for="topics_per_page">{L_FORUM_TOPICS_PAGE}:</label><br /><span>{L_FORUM_TOPICS_PAGE_EXPLAIN}</span></dt>
+			<dd><input type="text" id="topics_per_page" name="topics_per_page" value="{TOPICS_PER_PAGE}" size="4" maxlength="4" /></dd>
+		</dl>]]></find>
+			<action type="after-add"><![CDATA[		<dl>
+			<dt><label for="forum_op_only_view">{L_FORUM_OP_ONLY_VIEW}:</label><br /><span>{L_FORUM_OP_ONLY_VIEW_EXPLAIN}</span></dt>
+			<dd><input type="radio" class="radio" name="op_only_view" value="1"<!-- IF S_OP_ONLY_VIEW_ENABLE --> id="op_only_view" checked="checked"<!-- ENDIF --> /> {L_YES} &nbsp; <input type="radio" class="radio" name="op_only_view" value="0"<!-- IF not S_OP_ONLY_VIEW_ENABLE --> id="op_only_view" checked="checked"<!-- ENDIF --> /> {L_NO}</dd>
+		</dl>]]></action>
+		</edit>	</open>
+
+	<open src="includes/functions_display.php">
+		<edit>
+			<find><![CDATA['TOPICS'				=>]]></find>
+			<inline-edit>
+				<inline-find><![CDATA['TOPICS'				=>]]></inline-find>
+				<inline-action type="after-add"><![CDATA[($row['forum_op_only_view'] && !$auth->acl_get('f_op_only_view', $forum_id)) ? '--' :]]></inline-action>
+			</inline-edit>
+		</edit>
+		<edit>
+			<find><![CDATA[$l_post_click_count		=>]]></find>
+			<inline-edit>
+				<inline-find><![CDATA[$l_post_click_count		=>]]></inline-find>
+				<inline-action type="after-add"><![CDATA[($row['forum_op_only_view'] && !$auth->acl_get('f_op_only_view', $forum_id)) ? '--' :]]></inline-action>
+			</inline-edit>		
+		</edit>
+		<edit>
+			<find><![CDATA['LAST_POST_TIME'		=>]]></find>
+			<inline-edit>
+				<inline-find><![CDATA['LAST_POST_TIME'		=>]]></inline-find>
+				<inline-action type="after-add"><![CDATA[($row['forum_op_only_view'] && !$auth->acl_get('f_op_only_view', $forum_id)) ? '--' :]]></inline-action>
+			</inline-edit>		
+		</edit>
+		<edit>
+			<find><![CDATA['LAST_POSTER_FULL'		=>]]></find>
+			<inline-edit>
+				<inline-find><![CDATA['LAST_POSTER_FULL'		=>]]></inline-find>
+				<inline-action type="after-add"><![CDATA[($row['forum_op_only_view'] && !$auth->acl_get('f_op_only_view', $forum_id)) ? '--' :]]></inline-action>
+			</inline-edit>		
+		</edit>
+		<edit>
+			<find><![CDATA['LAST_POST_IMG'		=>]]></find>
+			<inline-edit>
+				<inline-find><![CDATA['LAST_POST_IMG'		=>]]></inline-find>
+				<inline-action type="after-add"><![CDATA[($row['forum_op_only_view'] && !$auth->acl_get('f_op_only_view', $forum_id)) ? '' :]]></inline-action>
+			</inline-edit>	
+		</edit>	</open>
+
+	<open src="includes/acp/acp_forums.php">
+		<edit>
+			<find><![CDATA['forum_style'			=> request_var('forum_style', 0),]]></find>
+			<action type="after-add"><![CDATA['forum_op_only_view'		=> request_var('op_only_view', false),]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA['forum_topics_per_page'	=> request_var('topics_per_page', 0),]]></find>
+			<action type="after-add"><![CDATA['forum_op_only_view'	=> request_var('op_only_view', false),]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA['TOPICS_PER_PAGE'			=> $forum_data['forum_topics_per_page'],]]></find>
+			<action type="before-add"><![CDATA['OP_ONLY_VIEW'				=> $forum_data['forum_op_only_view'],]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA['S_PRUNE_ENABLE'			=> ($forum_data['enable_prune']) ? true : false,]]></find>
+			<action type="before-add"><![CDATA['S_OP_ONLY_VIEW_ENABLE'		=> ($forum_data['forum_op_only_view']) ? true : false,]]></action>
+		</edit>	</open>
+
+	<open src="language/en/acp/forums.php">
+		<edit>
+			<find><![CDATA[));]]></find>
+			<action type="before-add"><![CDATA['FORUM_OP_ONLY_VIEW'				=> 'Topics Only Visible to OP',
+	'FORUM_OP_ONLY_VIEW_EXPLAIN'		=> 'When enabled, a topic author will only see thier topic in this forum. Grant permissions for others to view all topics in this forum.',]]></action>
+		</edit>	</open>
+		
+	<open src="language/en/acp/permissions_phpbb.php">
+		<edit>
+			<find><![CDATA['acl_f_noapprove'	=> array('lang' => 'Can post without approval', 'cat' => 'misc'),]]></find>
+			<action type="after-add"><![CDATA['acl_f_op_only_view'		=> array('lang' => 'Can see OP view only topics', 'cat' => 'misc'),]]></action>
+		</edit>	</open>
+
+</action-group>
+</mod>
