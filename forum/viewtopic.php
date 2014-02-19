@@ -344,15 +344,7 @@ if ($post_id)
 }
 
 $topic_id = (int) $topic_data['topic_id'];
-
-// BEGIN Topics Only Visible to OP MOD
-// If original poster only view is enabled, check if user has permission or is the topic poster
-if($topic_data['forum_op_only_view'] && $user->data['user_id'] != $topic_data['topic_poster'] && $topic_data['topic_type'] != POST_STICKY && !$auth->acl_get('f_op_only_view', $forum_id))
-{
-	trigger_error('NOT_AUTHORISED');
-}
-// END Topics Only Visible to OP MOD
-
+//
 $topic_replies = ($auth->acl_get('m_approve', $forum_id)) ? $topic_data['topic_replies_real'] : $topic_data['topic_replies'];
 
 // Check sticky/announcement time limit
