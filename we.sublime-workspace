@@ -7,6 +7,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "wp-content/themes/zeebizzcard/style.css",
+			"settings":
+			{
+				"buffer_size": 23756,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -48,13 +56,14 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 151.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 330.0,
 		"where_history":
 		[
+			""
 		]
 	},
 	"find_state":
@@ -62,6 +71,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"code, pre {\n	padding: 3px 8px;\n	margin: 0 1px;\n	background: #eeeeee;\n	color: #222 !important;\n	font-size: 0.9em;\n	font-family: Monospace, \"Courier New\", Courier;\n	overflow: auto;\n}",
 			"'acl_f_noapprove'	=> array('lang' => 'Can post without approval', 'cat' => 'misc'),",
 			"'S_PRUNE_ENABLE'			=> ($forum_data['enable_prune']) ? true : false,",
 			"'TOPICS_PER_PAGE'			=> $forum_data['forum_topics_per_page'],",
@@ -86,8 +96,38 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "wp-content/themes/zeebizzcard/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 23756,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13680,
+								13680
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 9295.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],

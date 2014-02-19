@@ -650,7 +650,7 @@ code, pre {
 	color: #222 !important;
 	font-size: 0.9em;
 	font-family: Monospace, "Courier New", Courier;
-	overflow: auto;
+	overflow: hidden;
 }
 del, strike, s{
 	text-decoration: line-through;
