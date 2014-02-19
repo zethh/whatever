@@ -97,10 +97,18 @@ function wgroptions_add_page_fn() {
 function register_wgrsettings() {
 
 	register_setting( 'wgr_rank_list', 'wgr_rank_list' );
+	
+	register_setting( 'wgr_tank_list', 'wgr_tank_list' );
+	
+	register_setting( 'wgr_healer_list', 'wgr_healer_list' );
 
 	add_settings_section('wgr_main','WGR Settings','section_text_fn', __FILE__);
 
 	add_settings_field('rank_list', 'Rank List', 'ranklist_fn', __FILE__, 'wgr_main');
+	
+	add_settings_field('tank_list', 'Tank List', 'tanklist_fn', __FILE__, 'wgr_main');
+	
+	add_settings_field('healer_list', 'Healer List', 'healerlist_fn', __FILE__, 'wgr_main');
 
 }
 
@@ -114,6 +122,21 @@ function ranklist_fn() {
 
 }
 
+function tanklist_fn() {
+
+	$options = get_option('wgr_tank_list');
+
+	echo "<input id='plugin_text_string' name='wgr_tank_list[wgr_tank_list]' size='40' type='text' value='{$options['wgr_tank_list']}' />";
+
+}
+
+function healerlist_fn() {
+
+	$options = get_option('wgr_healer_list');
+
+	echo "<input id='plugin_text_string' name='wgr_healer_list[wgr_healer_list]' size='40' type='text' value='{$options['wgr_healer_list']}' />";
+
+}
 
 
 function section_text_fn() {
@@ -150,6 +173,10 @@ function wgroptions_page_fn() {
 
 <?php settings_fields('wgr_rank_list'); ?>
 
+<?php settings_fields('wgr_tank_list'); ?>
+
+<?php settings_fields('wgr_healer_list'); ?>
+
 <?php do_settings_sections(__FILE__); ?>
 
 <p class="submit">
@@ -169,7 +196,6 @@ function wgroptions_page_fn() {
 <?php
 
 }
-
 
 
 // Returns a string race name
@@ -382,16 +408,26 @@ function classText($num) {
 
 }
 
-function roster_sort($a, $b)
-{
-	if ($a['rank'] == $b['rank'])
+function roster_sort($a, $b){
+
+	if ($a['character']['class'] == $b['character']['class'])
 	{
-		if ($a['character']['name'] == $b['character']['name']) return 0;
-		
-		return ($a['character']['name'] < $b['character']['name']) ? - 1 : 1;
+		if ($a['rank'] == $b['rank'])
+		{
+			if ($a['character']['name'] == $b['character']['name']) return 0;
 			
+			return ($a['character']['name'] < $b['character']['name']) ? - 1 : 1;
+				
+		}
+		return ($a['rank'] < $b['rank']) ? -1 : 1;
 	}
-	return ($a['rank'] < $b['rank']) ? -1 : 1;
+	return ($a['character']['class'] < $b['character']['class']) ? - 1 : 1;
+}
+
+function roster_sort_by_role($a, $b){
+
+	if ($a['character']['spec']['role'] == $b['character']['spec']['role']) return 0;
+	return ($a['character']['spec']['role'] > $b['character']['spec']['role']) ? - 1 : 1;
 }
 
 
@@ -423,7 +459,17 @@ function wow_guild_retrieve($atts) {
 
 	$rankarray = explode(',', $ranklist);
 
+	$wgrpluginoptions = get_option('wgr_tank_list');
 	
+	$tanklist = $wgrpluginoptions['wgr_tank_list'];
+	
+	$tankarray = explode(',', $tanklist);
+	
+	$wgrpluginoptions = get_option('wgr_healer_list');
+	
+	$healerlist = $wgrpluginoptions['wgr_healer_list'];
+	
+	$healerarray = explode(',', $healerlist);
 
 	$widgetid = 'wgrtable' . rand(1,100);
 
@@ -453,20 +499,6 @@ function wow_guild_retrieve($atts) {
 
 		// Set up the header
 
-		//$content .= "\r\n<script type='text/javascript'>\r\n";
-
-		//$content .= "jQuery(document).ready(function($) {\r\n"; 
-
-		//$content .= "\t$('#" . $widgetid . "').dataTable({'iDisplayLength':" . $tablesize . "}).fnSort([[" . $sorttype . ",'" . $sortorder . "']]);\r\n";
-		
-        //$content .= "\tvar widgetLoad = { site: document.URL, widget: '$widgetid' };";
-
-        //$content .= "\tKeen.addEvent('widgetLoads', widgetLoad);";
-
-		//$content .= "});\r\n";
-
-		//$content .= "</script>\r\n\r\n";
-
 		$content .= "<div id='guild-data-div'>\r\n";
 
 		$content .= "<div id='header-block'>\r\n";
@@ -483,7 +515,15 @@ function wow_guild_retrieve($atts) {
 
 		$gachieve = $roster[achievementPoints];
 
+		$tankcontent = "";
 		
+		$dpscontent = "";
+		
+		$healercontent = "";
+		
+		
+		usort($roster[members], "roster_sort");
+				
 
 		// Output the roster table header
 
@@ -501,46 +541,58 @@ function wow_guild_retrieve($atts) {
 
 		$content .= '</div>';
 
-		$content .= "<table id='$widgetid' class='dataTable'>\n";
-
-		$content .= "<thead><tr><th class='ginfo-name'>Name</th><th class='ginfo-race'>Race</th><th class='ginfo-class'>Class</th><th class='ginfo-rank'>Rank</th></tr></thead>\n";
-
-		$content .= "<tbody>\n";	
+			
 
 		$whichrow = 0;
 
-		usort($roster[members], "roster_sort");
-
+		
 		// Output a member row
+		
+		
+		$content .= "<table id='$widgetid' class='dataTable'>\n";
+
+		$content .= "<thead><tr><th class='ginfo-name'>Name</th><th class='ginfo-role'>Role</th><th class='ginfo-class'>Class</th><th class='ginfo-rank'>Rank</th></tr></thead>\n";
+
+		$content .= "<tbody>\n";
 		
 		foreach($roster[members] as $character) {
 			
-
-			$racenum = $character['character']['race'];
+			$cname = $character['character']['name'];
 
 			$gennum = $character['character']['gender'];
-
-			$race = raceText($racenum,$gennum);
-
-			$raceimg = 'race-' . str_replace(' ','-',$race) . '.png';
-
 			
-
 			$classnum = $character['character']['class'];
 
 			$class = classText($classnum);
 
 			$classimg = 'class-' . str_replace(' ','',$class) . '.png';
-
-						
+			
+			$role;
+				
+			if (in_array($cname, $tankarray)){
+			
+				$role = 'tank';
+				
+			}elseif (in_array($cname, $healerarray)){
+			
+				$role = 'healer';
+			
+			}else {
+			
+				$role = 'dps';
+			}
+				
+			//$role = strtolower($character['character']['spec']['role']);
+			
+			$roleimg = 'role-' . str_replace(' ','',$role) . '.png';								
+			
+			//Remove unwated ranks and Noeky
 			
 			$rankid = $character['rank'];
-			$cname = $character['character']['name'];
-			//Remove unwated ranks and Noeky
+			
 			if($rankid == '2' || $rankid == '4' || $rankid == '6' || $cname == 'Noeky'){
-			continue;
+				continue;
 			}
-
 			
 
 			if ($rankarray[$rankid] == '' || $rankarray[$rankid] == null){
@@ -571,11 +623,33 @@ function wow_guild_retrieve($atts) {
 					$rowstyle = "even";
 
 				}
-
+				
 				$content .= "<tr class='$rowstyle'>";
 
-				$content .= "<td class='ginfo-name'><a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/advanced'>" . $cname . "</a></td><td class='ginfo-race'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $raceimg . "' alt='" . $race . "' width='32' height='32'/></td><td class='ginfo-class'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $classimg . "' alt='" . $class . "' width='32' height='32'/></td><td class='ginfo-rank'>" . $rank . "</td></tr>";
+				$thumbnail = $character['character']['thumbnail'];
+			
+				$rowdata = "<div class='character-info'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $roleimg . "' alt='" . $role . "' width='24' height='24'/>
+						 <a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/advanced'>" . $cname . "</a>
+						 <img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $classimg . "' alt='" . $class . "' width='24' height='24'/>
+						 <img src='http://" . $region . ".battle.net/static-render/" . $region . "/" . $thumbnail . "'></div>";
+				$content .= "<td class='ginfo-name'><a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/advanced'>" . $cname . "</a></td>
+				</td><td class='ginfo-role'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $roleimg . "' alt='" . $role . "' width='24' height='24'/></td>
+				</td><td class='ginfo-class'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $classimg . "' alt='" . $class . "' width='24' height='24'/></td>
 
+				<td class='ginfo-rank'>" . $rank . "</td></tr>";
+				
+				
+				
+				switch ($role)
+				{
+					case 'dps': $dpscontent .= $rowdata;
+					break;
+					case 'tank': $tankcontent .= $rowdata;
+					break;
+					case 'healer': $healercontent .= $rowdata;
+					break;
+				}
+			
 				$content .= "</tr>\n";
 
 				$whichrow++;
@@ -593,13 +667,31 @@ function wow_guild_retrieve($atts) {
 		$content .= "</tbody>";
 
 		$content .= "</table>";
+		
+		$content .= "<div class='tank-list'>\n";
+		
+		$content .= $tankcontent;
+		
+		$content .= "</div>\n";
+		
+		$content .= "<div class='healer-list'>\n";
+		
+		$content .= $healercontent;
+
+		$content .= "</div>\n";
+		
+		$content .= "<div class='dps-list'>\n";
+		
+		$content .= $dpscontent;
+		
+		$content .= "</div>\n";
 
 		$content .= "<div class='clear'></div>";
 
 		$content .= "</div>";
 
 	}
-
+	
 	
 
 	return $content;
