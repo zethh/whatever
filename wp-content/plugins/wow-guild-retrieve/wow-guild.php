@@ -382,6 +382,17 @@ function classText($num) {
 
 }
 
+function roster_sort($a, $b)
+{
+	if ($a['rank'] == $b['rank'])
+	{
+		if ($a['character']['name'] == $b['character']['name']) return 0;
+		
+		return ($a['character']['name'] < $b['character']['name']) ? - 1 : 1;
+			
+	}
+	return ($a['rank'] < $b['rank']) ? -1 : 1;
+}
 
 
 function wow_guild_retrieve($atts) {
@@ -442,19 +453,19 @@ function wow_guild_retrieve($atts) {
 
 		// Set up the header
 
-		$content .= "\r\n<script type='text/javascript'>\r\n";
+		//$content .= "\r\n<script type='text/javascript'>\r\n";
 
-		$content .= "jQuery(document).ready(function($) {\r\n"; 
+		//$content .= "jQuery(document).ready(function($) {\r\n"; 
 
-        //$content .= "\t$('#" . $widgetid . "').dataTable({'iDisplayLength':" . $tablesize . "}).fnSort([[" . $sorttype . ",'" . $sortorder . "']]);\r\n";
+		//$content .= "\t$('#" . $widgetid . "').dataTable({'iDisplayLength':" . $tablesize . "}).fnSort([[" . $sorttype . ",'" . $sortorder . "']]);\r\n";
+		
+        //$content .= "\tvar widgetLoad = { site: document.URL, widget: '$widgetid' };";
 
-        $content .= "\tvar widgetLoad = { site: document.URL, widget: '$widgetid' };";
+        //$content .= "\tKeen.addEvent('widgetLoads', widgetLoad);";
 
-        $content .= "\tKeen.addEvent('widgetLoads', widgetLoad);";
+		//$content .= "});\r\n";
 
-		$content .= "});\r\n";
-
-		$content .= "</script>\r\n\r\n";
+		//$content .= "</script>\r\n\r\n";
 
 		$content .= "<div id='guild-data-div'>\r\n";
 
@@ -498,10 +509,10 @@ function wow_guild_retrieve($atts) {
 
 		$whichrow = 0;
 
-		
+		usort($roster[members], "roster_sort");
 
 		// Output a member row
-
+		
 		foreach($roster[members] as $character) {
 			
 
@@ -563,7 +574,7 @@ function wow_guild_retrieve($atts) {
 
 				$content .= "<tr class='$rowstyle'>";
 
-				$content .= "<td class='ginfo-name'><a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/simple'>" . $cname . "</a></td><td class='ginfo-race'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $raceimg . "' alt='" . $race . "' width='32' height='32'/></td><td class='ginfo-class'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $classimg . "' alt='" . $class . "' width='32' height='32'/></td><td class='ginfo-rank'>" . $rank . "</td></tr>";
+				$content .= "<td class='ginfo-name'><a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/advanced'>" . $cname . "</a></td><td class='ginfo-race'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $raceimg . "' alt='" . $race . "' width='32' height='32'/></td><td class='ginfo-class'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $classimg . "' alt='" . $class . "' width='32' height='32'/></td><td class='ginfo-rank'>" . $rank . "</td></tr>";
 
 				$content .= "</tr>\n";
 
