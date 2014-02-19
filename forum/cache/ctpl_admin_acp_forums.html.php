@@ -251,6 +251,10 @@
 			<dt><label for="topics_per_page"><?php echo ((isset($this->_rootref['L_FORUM_TOPICS_PAGE'])) ? $this->_rootref['L_FORUM_TOPICS_PAGE'] : ((isset($user->lang['FORUM_TOPICS_PAGE'])) ? $user->lang['FORUM_TOPICS_PAGE'] : '{ FORUM_TOPICS_PAGE }')); ?>:</label><br /><span><?php echo ((isset($this->_rootref['L_FORUM_TOPICS_PAGE_EXPLAIN'])) ? $this->_rootref['L_FORUM_TOPICS_PAGE_EXPLAIN'] : ((isset($user->lang['FORUM_TOPICS_PAGE_EXPLAIN'])) ? $user->lang['FORUM_TOPICS_PAGE_EXPLAIN'] : '{ FORUM_TOPICS_PAGE_EXPLAIN }')); ?></span></dt>
 			<dd><input type="text" id="topics_per_page" name="topics_per_page" value="<?php echo (isset($this->_rootref['TOPICS_PER_PAGE'])) ? $this->_rootref['TOPICS_PER_PAGE'] : ''; ?>" size="4" maxlength="4" /></dd>
 		</dl>
+		<dl>
+			<dt><label for="forum_op_only_view"><?php echo ((isset($this->_rootref['L_FORUM_OP_ONLY_VIEW'])) ? $this->_rootref['L_FORUM_OP_ONLY_VIEW'] : ((isset($user->lang['FORUM_OP_ONLY_VIEW'])) ? $user->lang['FORUM_OP_ONLY_VIEW'] : '{ FORUM_OP_ONLY_VIEW }')); ?>:</label><br /><span><?php echo ((isset($this->_rootref['L_FORUM_OP_ONLY_VIEW_EXPLAIN'])) ? $this->_rootref['L_FORUM_OP_ONLY_VIEW_EXPLAIN'] : ((isset($user->lang['FORUM_OP_ONLY_VIEW_EXPLAIN'])) ? $user->lang['FORUM_OP_ONLY_VIEW_EXPLAIN'] : '{ FORUM_OP_ONLY_VIEW_EXPLAIN }')); ?></span></dt>
+			<dd><input type="radio" class="radio" name="op_only_view" value="1"<?php if ($this->_rootref['S_OP_ONLY_VIEW_ENABLE']) {  ?> id="op_only_view" checked="checked"<?php } ?> /> <?php echo ((isset($this->_rootref['L_YES'])) ? $this->_rootref['L_YES'] : ((isset($user->lang['YES'])) ? $user->lang['YES'] : '{ YES }')); ?> &nbsp; <input type="radio" class="radio" name="op_only_view" value="0"<?php if (! $this->_rootref['S_OP_ONLY_VIEW_ENABLE']) {  ?> id="op_only_view" checked="checked"<?php } ?> /> <?php echo ((isset($this->_rootref['L_NO'])) ? $this->_rootref['L_NO'] : ((isset($user->lang['NO'])) ? $user->lang['NO'] : '{ NO }')); ?></dd>
+		</dl>
 		</fieldset>
 
 		<fieldset>

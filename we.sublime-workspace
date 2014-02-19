@@ -19,7 +19,10 @@
 	},
 	"console":
 	{
-		"height": 0.0
+		"height": 0.0,
+		"history":
+		[
+		]
 	},
 	"distraction_free":
 	{
@@ -32,10 +35,20 @@
 	},
 	"file_history":
 	[
+		"/C/Users/zethh/Documents/GitHub/whatever/wp-content/plugins/wow-guild-retrieve/wow-guild.php",
+		"/C/Users/zethh/Documents/GitHub/whatever/forum/search.php",
+		"/C/Users/zethh/Documents/GitHub/whatever/forum/viewforum.php",
+		"/C/Users/zethh/Documents/GitHub/whatever/forum/viewtopic.php",
+		"/C/Users/zethh/Documents/GitHub/whatever/forum/adm/style/acp_forums.html",
+		"/C/Users/zethh/Documents/GitHub/whatever/forum/includes/functions_display.php",
+		"/C/Users/zethh/Documents/GitHub/whatever/forum/includes/acp/acp_forums.php",
+		"/C/Users/zethh/Documents/GitHub/whatever/forum/language/en/acp/forums.php",
+		"/C/Users/zethh/Documents/GitHub/whatever/forum/language/en/acp/permissions_phpbb.php",
+		"/C/Users/zethh/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap"
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 23.0
 	},
 	"find_in_files":
 	{
@@ -49,6 +62,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"'acl_f_noapprove'	=> array('lang' => 'Can post without approval', 'cat' => 'misc'),",
+			"'S_PRUNE_ENABLE'			=> ($forum_data['enable_prune']) ? true : false,",
+			"'TOPICS_PER_PAGE'			=> $forum_data['forum_topics_per_page'],",
+			"'forum_style'			=> request_var('forum_style', 0),",
+			"<dl>\n			<dt><label for=\"topics_per_page\">{L_FORUM_TOPICS_PAGE}:</label><br /><span>{L_FORUM_TOPICS_PAGE_EXPLAIN}</span></dt>\n			<dd><input type=\"text\" id=\"topics_per_page\" name=\"topics_per_page\" value=\"{TOPICS_PER_PAGE}\" size=\"4\" maxlength=\"4\" /></dd>\n		</dl>",
+			"$sql = 'SELECT t.topic_id\n	FROM ' . TOPICS_TABLE . \" t\n	WHERE $sql_where\n		AND t.topic_type IN (\" . POST_NORMAL . ', ' . POST_STICKY . \")\n		$sql_approved",
+			"if ($row['forum_password'] && $row['user_id'] != $user->data['user_id'])\n		{\n			$ex_fid_ary[] = (int) $row['forum_id'];\n			continue;\n		}"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -73,7 +93,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 23.0
 	},
 	"input":
 	{
@@ -102,9 +122,14 @@
 		]
 	},
 	"menu_visible": true,
-	"replace":
+	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"project": "we.sublime-project",
+	"replace":
+	{
+		"height": 42.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -123,10 +148,24 @@
 		],
 		"width": 0.0
 	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
-	"status_bar_visible": true
+	"side_bar_width": 229.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }

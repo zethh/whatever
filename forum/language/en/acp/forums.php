@@ -155,6 +155,9 @@ $lang = array_merge($lang, array(
 	'TYPE_LINK'			=> 'Link',
 
 	'UNLOCKED'			=> 'Unlocked',
+
+'FORUM_OP_ONLY_VIEW'				=> 'Topics Only Visible to OP',
+	'FORUM_OP_ONLY_VIEW_EXPLAIN'		=> 'When enabled, a topic author will only see thier topic in this forum. Grant permissions for others to view all topics in this forum.',
 ));
 
 ?>
