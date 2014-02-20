@@ -8,22 +8,26 @@
 	"buffers":
 	[
 		{
-			"file": "wp-content/themes/zeebizzcard/style.css",
+			"file": "forum/style.php",
 			"settings":
 			{
-				"buffer_size": 23756,
-				"line_ending": "Windows"
+				"buffer_size": 8316,
+				"line_ending": "Unix"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 0.0,
+		"height": 380.0,
 		"selected_items":
 		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			]
 		],
-		"width": 0.0
+		"width": 416.0
 	},
 	"console":
 	{
@@ -43,6 +47,9 @@
 	},
 	"file_history":
 	[
+		"/C/Users/zethh/Documents/GitHub/whatever/wp-content/themes/zeebizzcard/style.css",
+		"/C/Users/zethh/Documents/GitHub/whatever/forum/styles/prosilver/template/editor.js",
+		"/C/Users/zethh/AppData/Roaming/Sublime Text 3/Packages/User/sftp_servers/whatever",
 		"/C/Users/zethh/Documents/GitHub/whatever/wp-content/plugins/wow-guild-retrieve/wow-guild.php",
 		"/C/Users/zethh/Documents/GitHub/whatever/forum/search.php",
 		"/C/Users/zethh/Documents/GitHub/whatever/forum/viewforum.php",
@@ -56,7 +63,7 @@
 	],
 	"find":
 	{
-		"height": 151.0
+		"height": 23.0
 	},
 	"find_in_files":
 	{
@@ -71,6 +78,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"document.write('<td bgcolor=\"#' + color + '\" style=\"width: ' + width + 'px; height: ' + height + 'px; background-color: #' + color + ;\">');",
 			"code, pre {\n	padding: 3px 8px;\n	margin: 0 1px;\n	background: #eeeeee;\n	color: #222 !important;\n	font-size: 0.9em;\n	font-family: Monospace, \"Courier New\", Courier;\n	overflow: auto;\n}",
 			"'acl_f_noapprove'	=> array('lang' => 'Can post without approval', 'cat' => 'misc'),",
 			"'S_PRUNE_ENABLE'			=> ($forum_data['enable_prune']) ? true : false,",
@@ -101,28 +109,31 @@
 			[
 				{
 					"buffer": 0,
-					"file": "wp-content/themes/zeebizzcard/style.css",
-					"semi_transient": false,
+					"file": "forum/style.php",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 23756,
+						"buffer_size": 8316,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								13680,
-								13680
+								686,
+								686
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 9295.0,
+						"translation.x": -0.0,
+						"translation.y": 405.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -165,6 +176,10 @@
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 100.0
 	},
 	"project": "we.sublime-project",
 	"replace":

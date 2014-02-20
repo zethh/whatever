@@ -1,55 +1,5 @@
 <?php
 
-/* 
-
-Plugin Name: WoW Guild Retrieve
-
-Plugin URI: http://www.benovermyer.com/wow-guild-retrieve
-
-Description: Shows a roster for a World of Warcraft guild
-
-Version: 1.2.1
-
-Author: Ben Overmyer
-
-Author URI: http://www.benovermyer.com/
-
-*/
-
-
-
-/*  Copyright 2010  Ben_Overmyer  (email : ben@benovermyer.com)
-
-
-
-    This program is free software; you can redistribute it and/or modify
-
-    it under the terms of the GNU General Public License, version 2, as 
-
-    published by the Free Software Foundation.
-
-
-
-    This program is distributed in the hope that it will be useful,
-
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-
-    GNU General Public License for more details.
-
-
-
-    You should have received a copy of the GNU General Public License
-
-    along with this program; if not, write to the Free Software
-
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-*/
-
-
-
 wp_enqueue_script('wgrkeenio','/wp-content/plugins/wow-guild-retrieve/js/keen.io.js');
 
 wp_enqueue_script('jquery');
@@ -126,7 +76,7 @@ function tanklist_fn() {
 
 	$options = get_option('wgr_tank_list');
 
-	echo "<input id='plugin_text_string' name='wgr_tank_list[wgr_tank_list]' size='40' type='text' value='{$options['wgr_tank_list']}' />";
+	echo "<input id='plugin_text_string_t' name='wgr_tank_list[wgr_tank_list]' size='40' type='text' value='{$options['wgr_tank_list']}' />";
 
 }
 
@@ -134,7 +84,7 @@ function healerlist_fn() {
 
 	$options = get_option('wgr_healer_list');
 
-	echo "<input id='plugin_text_string' name='wgr_healer_list[wgr_healer_list]' size='40' type='text' value='{$options['wgr_healer_list']}' />";
+	echo "<input id='plugin_text_string_h' name='wgr_healer_list[wgr_healer_list]' size='40' type='text' value='{$options['wgr_healer_list']}' />";
 
 }
 
@@ -431,6 +381,28 @@ function roster_sort_by_role($a, $b){
 }
 
 
+function role_table($characters, $title, $count, $role){
+
+	$roleimg = 'role-' . str_replace(' ','',$role) . '.png';
+
+	$content .= "<table class='dataTable'><thead id='header-block'>
+	<tr>
+		<th><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $roleimg . "' alt='" . $role . "' width='24' height='24'/></th>
+		<th colspan='2' id='header-text'>" . $title . " (" . $count . ")</th>
+	</tr></thead>\n";
+
+	$content .= "<tbody>\n";
+
+	$content .= $characters;
+
+	$content .= "</tbody>";
+
+	$content .= "</table>";
+
+	return $content;
+
+}
+
 function wow_guild_retrieve($atts) {
 
 	extract(shortcode_atts(array(
@@ -499,6 +471,83 @@ function wow_guild_retrieve($atts) {
 
 		// Set up the header
 
+$jScript = 'jQuery(function($) {
+var timer;
+function mouseoverActiontooltip(event)
+{
+$("body").append("<p id=\'tooltip\'>"+ this.rel + "</p>");
+$("#tooltip").css("left",(event.pageX + 20) + "px");
+$("#tooltip").css("top",(event.pageY - 10) + "px");
+}
+
+function mouseoutActiontooltip(event)
+{
+$("#tooltip").remove();
+}
+
+function mousemoveActiontooltip(event)
+{
+$("#tooltip").css("left",(event.pageX + 20) + "px");
+$("#tooltip").css("top",(event.pageY - 10) + "px");
+}
+
+function mouseoverActiontooltipImage(event)
+{
+$("body").append("<p id=\'tooltip\'><img src="+ this.rel + "></img></p>");
+$("#tooltip").css("left",(event.pageX + 20) + "px");
+$("#tooltip").css("top",(event.pageY - 10) + "px");
+}
+
+function mouseoutActiontooltipImage(event)
+{
+$("#tooltip").remove();
+}
+
+function mousemoveActiontooltipImage(event)
+{
+$("#tooltip").css("left",(event.pageX + 20) + "px");
+$("#tooltip").css("top",(event.pageY - 10) + "px");
+}
+
+$(\'.tooltip\').bind(\'mouseover\', mouseoverActiontooltip);
+
+$(\'.tooltip\').bind(\'mouseout\', mouseoutActiontooltip);
+
+$(\'.tooltip\').bind(\'mousemove\', mousemoveActiontooltip);
+
+$(\'.tooltipImage\').bind(\'mouseover\', mouseoverActiontooltipImage);
+
+$(\'.tooltipImage\').bind(\'mouseout\', mouseoutActiontooltipImage);
+
+$(\'.tooltipImage\').bind(\'mousemove\', mousemoveActiontooltipImage);
+
+});';
+
+$muchStyle = '<style type="text/css">
+#tooltip{
+position:absolute;
+border:1px solid #ccc;
+background:#333;
+padding:5px;
+color:#fff;
+}
+
+#tooltipList ul
+{
+margin:0px;
+padding:0px;
+}
+
+#tooltipList li
+{
+display:block;
+margin-bottom:20px;
+}
+</style>';
+
+		$content ="<script type='text/javascript'>" . $jScript  . "</script>";
+		$content .= $muchStyle;
+
 		$content .= "<div id='guild-data-div'>\r\n";
 
 		$content .= "<div id='header-block'>\r\n";
@@ -541,9 +590,11 @@ function wow_guild_retrieve($atts) {
 
 		$content .= '</div>';
 
-			
+		$healerContent = 0;
 
-		$whichrow = 0;
+		$dpsCount = 0;
+
+		$tankCount = 0;
 
 		
 		// Output a member row
@@ -590,7 +641,7 @@ function wow_guild_retrieve($atts) {
 			
 			$rankid = $character['rank'];
 			
-			if($rankid == '2' || $rankid == '4' || $rankid == '6' || $cname == 'Noeky'){
+			if($rankid == '2' || $rankid == '4' || $rankid == '6'){
 				continue;
 			}
 			
@@ -607,7 +658,7 @@ function wow_guild_retrieve($atts) {
 
 			$ranknum = str_replace('Rank ','',$rankid);
 
-			
+			$rank = substr($rank, 0, 1);			
 
 			$level = $character['character']['level'];
 
@@ -626,24 +677,30 @@ function wow_guild_retrieve($atts) {
 				
 				$thumbnail = $character['character']['thumbnail'];
 			
-				$rowdata = "<td class='character-info'><a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/advanced'>" . $cname . "</a>
-						 <img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $classimg . "' alt='" . $class . "' width='24' height='24'/>
-						 <img src='http://" . $region . ".battle.net/static-render/" . $region . "/" . $thumbnail . "'></li>";
-				$rowdata = "<tr class='$rowstyle'><td class='ginfo-role'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $roleimg . "' alt='" . $role . "' width='24' height='24'/></td>
-				<td class='ginfo-name'><a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/advanced'>" . $cname . "</a></td>
-				<td class='ginfo-class'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $classimg . "' alt='" . $class . "' width='24' height='24'/></td></tr>";
+				$tooltipURL = "http://" . $region . ".battle.net/static-render/" . $region . "/" . $thumbnail;
 
-				//<td class='ginfo-rank'>" . $rank . "</td></tr>\n";
-				
-				
-				
+				$rowdata = "<tr class='$rowstyle'>
+				<td class='ginfo-class'>
+				<a class='tooltipImage' rel='" . $tooltipURL . "'>
+				<img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $classimg . "' alt='" . $class . "' width='24' height='24' />
+				</a></td>
+				<td class='ginfo-name'><a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/advanced'>" . $cname . "</a></td>
+				<td class='ginfo-rank'>" . $rank . "</td>
+				</tr>";			
+
 				switch ($role)
 				{
-					case 'dps': $dpscontent .= $rowdata;
+					case 'dps': 
+						$dpscontent .= $rowdata;
+						$dpsCount++;
 					break;
-					case 'tank': $tankcontent .= $rowdata;
+					case 'tank': 
+						$tankcontent .= $rowdata;
+						$tankCount++;
 					break;
-					case 'healer': $healercontent .= $rowdata;
+					case 'healer': 
+						$healercontent .= $rowdata;
+						$healerCount++;
 					break;
 				}
 
@@ -651,35 +708,11 @@ function wow_guild_retrieve($atts) {
 
 		}
 
-		$content .= "<table class='dataTable'>\n";
+		$content .= role_table($tankcontent, "Tanks", $tankCount, "tank");
 
-		$content .= "<tbody>\n";
+		$content .= role_table($healercontent, "Healers", $healerCount, "healer");
 
-		$content .= $tankcontent;
-
-		$content .= "</tbody>";
-
-		$content .= "</table>";
-
-		$content .= "<table class='dataTable'>\n";
-
-		$content .= "<tbody>\n";
-
-		$content .= $healercontent;
-		
-		$content .= "</tbody>";
-
-		$content .= "</table>";
-
-		$content .= "<table class='dataTable'>\n";
-
-		$content .= "<tbody>\n";
-
-		$content .= $dpscontent;
-		
-		$content .= "</tbody>";
-
-		$content .= "</table>";
+		$content .= role_table($dpscontent, "Dps", $dpsCount, "dps");
 		
 		$content .= "<div class='clear'></div>";
 
