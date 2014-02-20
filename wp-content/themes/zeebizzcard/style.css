@@ -59,7 +59,7 @@ a:hover, a:active {
 .sticky {}
 /*============================ WRAPPER ============================*/
 #wrapper {
-	width: 1090px;
+	width: 1290px;
 	margin: 75px auto 0 auto;
 }
 #sidewrap, #headwrap {
@@ -86,7 +86,7 @@ a:hover, a:active {
 #wrap {
 	float: right;
 	margin: 0 0 50px 0;
-	width: 740px;
+	width: 940px;
 	text-align: left;
 	padding: 10px;
 	background: url(images/wrapper.png) repeat;
@@ -274,10 +274,15 @@ a:hover, a:active {
 	margin-top: 10px;
 }
 /*============================ NAVIGATION ============================*/
+
+.menu {
+	float:right;
+}
+
 #navi {
 	float: right;
 	background: url(images/bg.png) repeat-x #111111;
-	width: 720px;
+	width: 100%;
 	font-family: 'Carme', Verdana, Arial;
 	padding: 0;
 	-moz-border-radius: 3px;
