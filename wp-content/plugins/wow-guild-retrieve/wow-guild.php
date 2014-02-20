@@ -549,11 +549,11 @@ function wow_guild_retrieve($atts) {
 		// Output a member row
 		
 		
-		$content .= "<table id='$widgetid' class='dataTable'>\n";
+		//$content .= "<table id='$widgetid' class='dataTable'>\n";
 
-		$content .= "<thead><tr><th class='ginfo-name'>Name</th><th class='ginfo-role'>Role</th><th class='ginfo-class'>Class</th><th class='ginfo-rank'>Rank</th></tr></thead>\n";
+		//$content .= "<thead><tr><th class='ginfo-name'>Name</th><th class='ginfo-role'>Role</th><th class='ginfo-class'>Class</th><th class='ginfo-rank'>Rank</th></tr></thead>\n";
 
-		$content .= "<tbody>\n";
+		//$content .= "<tbody>\n";
 		
 		foreach($roster[members] as $character) {
 			
@@ -624,19 +624,16 @@ function wow_guild_retrieve($atts) {
 
 				}
 				
-				$content .= "<tr class='$rowstyle'>";
-
 				$thumbnail = $character['character']['thumbnail'];
 			
-				$rowdata = "<div class='character-info'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $roleimg . "' alt='" . $role . "' width='24' height='24'/>
-						 <a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/advanced'>" . $cname . "</a>
+				$rowdata = "<td class='character-info'><a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/advanced'>" . $cname . "</a>
 						 <img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $classimg . "' alt='" . $class . "' width='24' height='24'/>
-						 <img src='http://" . $region . ".battle.net/static-render/" . $region . "/" . $thumbnail . "'></div>";
-				$content .= "<td class='ginfo-name'><a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/advanced'>" . $cname . "</a></td>
-				</td><td class='ginfo-role'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $roleimg . "' alt='" . $role . "' width='24' height='24'/></td>
-				</td><td class='ginfo-class'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $classimg . "' alt='" . $class . "' width='24' height='24'/></td>
+						 <img src='http://" . $region . ".battle.net/static-render/" . $region . "/" . $thumbnail . "'></li>";
+				$rowdata = "<tr class='$rowstyle'><td class='ginfo-role'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $roleimg . "' alt='" . $role . "' width='24' height='24'/></td>
+				<td class='ginfo-name'><a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/advanced'>" . $cname . "</a></td>
+				<td class='ginfo-class'><img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $classimg . "' alt='" . $class . "' width='24' height='24'/></td></tr>";
 
-				<td class='ginfo-rank'>" . $rank . "</td></tr>";
+				//<td class='ginfo-rank'>" . $rank . "</td></tr>\n";
 				
 				
 				
@@ -649,43 +646,41 @@ function wow_guild_retrieve($atts) {
 					case 'healer': $healercontent .= $rowdata;
 					break;
 				}
-			
-				$content .= "</tr>\n";
-
-				$whichrow++;
-
-				if ($whichrow >= 2) {
-
-					$whichrow = 0;
-
-				}
 
 			}
 
 		}
 
+		$content .= "<table class='dataTable'>\n";
+
+		$content .= "<tbody>\n";
+
+		$content .= $tankcontent;
+
+		$content .= "</tbody>";
+
+		$content .= "</table>";
+
+		$content .= "<table class='dataTable'>\n";
+
+		$content .= "<tbody>\n";
+
+		$content .= $healercontent;
+		
+		$content .= "</tbody>";
+
+		$content .= "</table>";
+
+		$content .= "<table class='dataTable'>\n";
+
+		$content .= "<tbody>\n";
+
+		$content .= $dpscontent;
+		
 		$content .= "</tbody>";
 
 		$content .= "</table>";
 		
-		$content .= "<div class='tank-list'>\n";
-		
-		$content .= $tankcontent;
-		
-		$content .= "</div>\n";
-		
-		$content .= "<div class='healer-list'>\n";
-		
-		$content .= $healercontent;
-
-		$content .= "</div>\n";
-		
-		$content .= "<div class='dps-list'>\n";
-		
-		$content .= $dpscontent;
-		
-		$content .= "</div>\n";
-
 		$content .= "<div class='clear'></div>";
 
 		$content .= "</div>";
