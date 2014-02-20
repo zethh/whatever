@@ -1,10 +1,36 @@
 <?php
+/* 
+Plugin Name: WoW Guild Retrieve
+Plugin URI: http://www.benovermyer.com/wow-guild-retrieve
+Description: Shows a roster for a World of Warcraft guild
+Version: 1.2.1
+Author: Ben Overmyer
+Author URI: http://www.benovermyer.com/
+*/
+
+/*  Copyright 2010  Ben_Overmyer  (email : ben@benovermyer.com)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License, version 2, as 
+    published by the Free Software Foundation.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
 
 wp_enqueue_script('wgrkeenio','/wp-content/plugins/wow-guild-retrieve/js/keen.io.js');
 
 wp_enqueue_script('jquery');
 
-wp_enqueue_script('wgrdatascript','/wp-content/plugins/wow-guild-retrieve/js/jquery.dataTables.min.js',array('jquery'));
+wp_enqueue_script('wgrdatascript','/wp-content/plugins/wow-guild-retrieve/js/wgr.js');
+
+//wp_enqueue_script('wgrdatascript','/wp-content/plugins/wow-guild-retrieve/js/jquery.dataTables.min.js',array('jquery'));
 
 wp_enqueue_style('wgrstyle','/wp-content/plugins/wow-guild-retrieve/css/wgr.css');
 
@@ -471,83 +497,6 @@ function wow_guild_retrieve($atts) {
 
 		// Set up the header
 
-$jScript = 'jQuery(function($) {
-var timer;
-function mouseoverActiontooltip(event)
-{
-$("body").append("<p id=\'tooltip\'>"+ this.rel + "</p>");
-$("#tooltip").css("left",(event.pageX + 20) + "px");
-$("#tooltip").css("top",(event.pageY - 10) + "px");
-}
-
-function mouseoutActiontooltip(event)
-{
-$("#tooltip").remove();
-}
-
-function mousemoveActiontooltip(event)
-{
-$("#tooltip").css("left",(event.pageX + 20) + "px");
-$("#tooltip").css("top",(event.pageY - 10) + "px");
-}
-
-function mouseoverActiontooltipImage(event)
-{
-$("body").append("<p id=\'tooltip\'><img src="+ this.rel + "></img></p>");
-$("#tooltip").css("left",(event.pageX + 20) + "px");
-$("#tooltip").css("top",(event.pageY - 10) + "px");
-}
-
-function mouseoutActiontooltipImage(event)
-{
-$("#tooltip").remove();
-}
-
-function mousemoveActiontooltipImage(event)
-{
-$("#tooltip").css("left",(event.pageX + 20) + "px");
-$("#tooltip").css("top",(event.pageY - 10) + "px");
-}
-
-$(\'.tooltip\').bind(\'mouseover\', mouseoverActiontooltip);
-
-$(\'.tooltip\').bind(\'mouseout\', mouseoutActiontooltip);
-
-$(\'.tooltip\').bind(\'mousemove\', mousemoveActiontooltip);
-
-$(\'.tooltipImage\').bind(\'mouseover\', mouseoverActiontooltipImage);
-
-$(\'.tooltipImage\').bind(\'mouseout\', mouseoutActiontooltipImage);
-
-$(\'.tooltipImage\').bind(\'mousemove\', mousemoveActiontooltipImage);
-
-});';
-
-$muchStyle = '<style type="text/css">
-#tooltip{
-position:absolute;
-border:1px solid #ccc;
-background:#333;
-padding:5px;
-color:#fff;
-}
-
-#tooltipList ul
-{
-margin:0px;
-padding:0px;
-}
-
-#tooltipList li
-{
-display:block;
-margin-bottom:20px;
-}
-</style>';
-
-		$content ="<script type='text/javascript'>" . $jScript  . "</script>";
-		$content .= $muchStyle;
-
 		$content .= "<div id='guild-data-div'>\r\n";
 
 		$content .= "<div id='header-block'>\r\n";
@@ -576,7 +525,7 @@ margin-bottom:20px;
 
 		// Output the roster table header
 
-		$content .= '<img src="' . WP_PLUGIN_URL . '/wow-guild-retrieve/images/faction-' . $gfaction . '.png" alt="" height="64" width="64"/>';
+		$content .= '<a href="http://'. $region . '.battle.net/wow/en/guild/' . $realmstr . '/' . $gname .'/" target="_blank"><img src="' . WP_PLUGIN_URL . '/wow-guild-retrieve/images/faction-' . $gfaction . '.png" alt="" height="64" width="64"/>';
 
 		$content .= '<div id="header-text">';
 
@@ -584,7 +533,7 @@ margin-bottom:20px;
 
 		$content .= '<h3>' . $gachieve . ' Achievement Points | Level ' . $glevel . '</h3>';
 
-		$content .= '</div>';
+		$content .= '</div></a>';
 
 		$content .= '<div class="clear"></div>';
 
@@ -665,15 +614,6 @@ margin-bottom:20px;
 
 			if (($restrict == 'true' AND $level == '90') OR ($restrict == 'false')){
 
-				if ($whichrow == 0) {
-
-					$rowstyle = "odd";
-
-				} else {
-
-					$rowstyle = "even";
-
-				}
 				
 				$thumbnail = $character['character']['thumbnail'];
 			
@@ -684,8 +624,8 @@ margin-bottom:20px;
 				<a class='tooltipImage' rel='" . $tooltipURL . "'>
 				<img src='" . WP_PLUGIN_URL . "/wow-guild-retrieve/images/" . $classimg . "' alt='" . $class . "' width='24' height='24' />
 				</a></td>
-				<td class='ginfo-name'><a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/advanced'>" . $cname . "</a></td>
-				<td class='ginfo-rank'>" . $rank . "</td>
+				<td class='ginfo-name'><a href='http://" . $region . ".battle.net/wow/en/character/" . $realmstr . "/" . $cname . "/advanced' target='_blank'>" . $cname . "</a></td>
+				<td class='ginfo-rank'>" .$rank . "</td>
 				</tr>";			
 
 				switch ($role)

@@ -2,17 +2,20 @@
  * WoW Guild Retrieve
  * Default CSS Styling
  */
- 
+
+#tooltip{position:absolute;border:1px solid #ccc;background:#333;padding:5px;color:#fff;width:84px;height:84px;}
+
 div#guild-data-div{font:12px Arial;font-weight:400;padding:0;}
 div#guild-data-div th{font-weight:700;text-align:left;}
 div#guild-data-div td img{border:0;}
 div#guild-data-div .clear{clear:both;}
 
+div#guild-data-div table .ginfo-role{width:30px;}
 div#guild-data-div table .ginfo-race{width:50px;}
-div#guild-data-div table .ginfo-class{width:50px;}
-div#guild-data-div table .ginfo-name{text-align:left;padding-left:0.75em;}
+div#guild-data-div table .ginfo-class{width:30px;}
+div#guild-data-div table .ginfo-name{text-align:left;padding-left:0.75em; width:30px;}
 div#guild-data-div table .ginfo-level{width:50px;}
-div#guild-data-div table .ginfo-rank{width:100px;}
+div#guild-data-div table .ginfo-rank{width:20px;}
 div#guild-data-div table .ginfo-achieve{width:80px;}
 div#guild-data-div table tr:hover{background:#aaa;color:#000;}
 
@@ -20,9 +23,9 @@ div#guild-data-div #header-block{width:100%;border-bottom:2px groove #555;paddin
 div#guild-data-div #header-block h2{border:0;color:#a99;font:36px Georgia;padding:0;margin:0;}
 div#guild-data-div #header-block h3{border:0;font:14px Arial;font-weight:700;padding:0;margin:0;}
 div#guild-data-div #header-block img{float:left;}
-div#guild-data-div #header-text{float:left;text-align:left;height:70px;margin-left:1em;}
+div#guild-data-div #header-text{text-align:left;vertical-align: middle;}
 
-div#guild-data-div table{clear:both;margin:10px;width:100%;}
+div#guild-data-div table{float:left;margin:10px;width:30%;}
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables features
