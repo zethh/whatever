@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		<title lang="en">Application form</title>
+		<description lang="en">This form allows users to apply for a certain team positions. The applications are send to a hidden forum where the administrators can read them and see if the users are the best for the position.</description>
+		
+		<author-group>
+			<author>
+				<realname>Jim Mossing Holsteyn</realname>
+				<username>JimA</username>
+				<homepage>http://beta-garden.com</homepage>
+			</author>
+		</author-group>
+		
+		<mod-version>1.0.1</mod-version>
+		
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.5</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2009-05-05</date>
+				<rev-version>0.0.1</rev-version>
+				<changelog lang="en">
+					<change>Initial release</change>
+				</changelog>
+			</entry>
+			
+			<entry>
+				<date>2009-07-20</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>Added German translation (thanks to lugsciath)</change>
+					<change>Added UTF-8 support in the reason of the applying user and name</change>
+					<change>Fixed little bug with the icon in header</change>
+					<change>E-mail address now automaticly taken from the users' details</change>
+					<change>Confirmed to be working with 3.0.5</change>
+				</changelog>
+			</entry>
+			
+			<entry>
+				<date>2009-08-06</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>Some tiny changes after denial from the MOD Database</change>
+				</changelog>
+			</entry>
+	
+		</history>
+		
+		<link-group>
+			<link type="language" href="contrib/de.xml" lang="en">German</link>
+		</link-group>
+
+	</header>
+	
+	<action-group>
+
+		<copy>
+			<file from="root/application.php" to="application.php" />
+			<file from="root/language/en/mods/application.php" to="language/en/mods/application.php" />
+			<file from="root/styles/prosilver/template/appform_body.html" to="styles/prosilver/template/appform_body.html" />
+		</copy>
+		
+		<open src="includes/functions.php">
+			<edit>
+				<find><![CDATA['U_PRIVATEMSGS'			=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=pm&amp;folder=inbox'),]]></find>
+				<action type="before-add"><![CDATA['U_APPLICATION_FORM'	=> append_sid("{$phpbb_root_path}application.$phpEx"),]]></action>
+			</edit>
+		</open>
+		
+		<open src="language/en/common.php">
+			<edit>
+				<find><![CDATA['AND'							=> 'And',]]></find>
+				<action type="after-add"><![CDATA['APPLICATION_FORM'				=> 'Application form',
+	'APPLICATION_FORM_EXPLAIN'		=> 'Here you can apply to become a team member',]]></action>
+			</edit>
+		</open>
+		
+		<open src="styles/prosilver/template/overall_header.html">
+			<edit>
+				<find><![CDATA[<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>]]></find>
+				<action type="after-add"><![CDATA[<li class="icon-members"><a href="{U_APPLICATION_FORM}" title="{L_APPLICATION_FORM_EXPLAIN}">{L_APPLICATION_FORM}</a></li>]]></action>
+			</edit>
+		</open>
+		
+		<diy-instructions lang="en">First create a hidden forum that only the people who may read the applications can see.
+		
+Make sure that you, in application.php, edit the following number into the ID of the hidden form where you want the application posts to be in.
+$forumid_send = 2;
+
+Also, the team names aren't filled in yet in the form, you need to fill them in manually.
+Open language/en/application.php and search for this:
+
+	'APPLICATION_TEAM1'				=> 'Teamname 1',
+	'APPLICATION_TEAM2'				=> 'Teamname 2',
+	'APPLICATION_TEAM3'				=> 'Teamname 3',
+	
+And edit those to the names of the teams you want people to be able to apply for.</diy-instructions>
+
+	</action-group>
+</mod>
