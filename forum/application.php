@@ -25,7 +25,7 @@ if ($user->data['user_id'] == ANONYMOUS)
 include($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
 
 // Let's set the configuration, this is the ID of the forum where the post goes to
-$forumid_send = 2;
+$forumid_send = 10;
 
 $submit = (isset($_POST['submit'])) ? true : false;
 
@@ -33,8 +33,16 @@ $submit = (isset($_POST['submit'])) ? true : false;
 	{
 
 // Setting the variables we need to submit the post to the forum where all the applications come in
-$apply_subject  = sprintf($user->lang['APPLICATION_SUBJECT'], $user->data['username']);
-$apply_post     = sprintf($user->lang['APPLICATION_MESSAGE'], $user->data['username'], utf8_normalize_nfc(request_var('name', '', true)), $user->data['user_email'], request_var('postion', '', true), utf8_normalize_nfc(request_var('why', '', true)));
+
+$apply_subject  = sprintf("[%s] %s",$_POST['character_class'],$_POST['character_name']);
+
+$armoryURL = "[url=http://eu.battle.net/wow/en/character/" . $_POST['realm'] . "/" . $_POST['character_name'] . "/advanced]Armory[/url]";
+
+$wowprogressURL = "[url=http://www.wowprogress.com/character/eu/" . $_POST['realm'] . "/" . $_POST['character_name']. "]wowprogress[/url]";
+
+$raidbotsURL = "[url=http://www.raidbots.com/epeenbot/eu/" . $_POST['realm'] . "/" . $_POST['character_name'] . "]raidbots[/url]";
+
+$apply_post = sprintf("%s %s %s", $armoryURL, $wowprogressURL, $raidbotsURL);
 
 // variables to hold the parameters for submit_post
 $poll = $uid = $bitfield = $options = ''; 
@@ -69,11 +77,13 @@ $data = array(
 submit_post('post', $apply_subject, '', POST_NORMAL, $poll, $data);
 
 $message = $user->lang['APPLICATION_SEND'];
-$message = $message . '<br /><br />' . sprintf($user->lang['RETURN_INDEX'], '<a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '">', '</a>');
+$message = $message . '<br /><br />' . sprintf("%sApplications%s", '<a href="' . append_sid("{$phpbb_root_path}viewforum.$phpEx?f=10") . '">', '</a>');
 trigger_error($message);
 }
 
 page_header($user->lang['APPLICATION_PAGETITLE']);
+
+
 
 $template->assign_vars(array(
 	'PROCESS_APPFORM'	=> append_sid("{$phpbb_root_path}application.$phpEx"),

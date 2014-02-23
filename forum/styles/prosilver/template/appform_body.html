@@ -4,25 +4,29 @@
    <div class="inner"><span class="corners-top"><span></span></span>
 
    <div class="content">
-      
         <h2>{L_APPLICATION_PAGETITLE}</h2>
-        
         <span style="font-size: 1.3em;">{L_APPLICATION_WELCOME_MESSAGE}<br /><br /><br />
        
         <form method="post" action="{PROCESS_APPFORM}" id="appform"> 
-        {L_APPLICATION_REALNAME} <input type="text" name="name" /><br />
-        {L_APPLICATION_POSITION}
-        <select name="postion">
-        <option value="{L_APPLICATION_TEAM1}">{L_APPLICATION_TEAM1}</option>
-        <option value="{L_APPLICATION_TEAM2}">{L_APPLICATION_TEAM2}</option>
-        <option value="{L_APPLICATION_TEAM3}">{L_APPLICATION_TEAM3}</option>
-        </select>
+
+	<table>
+	<tr>
+	<td>Character Name</td><td><input type="text" name="character_name" /></td>
+	</tr>
+	<tr>
+	<td>Class</td><td> <!-- PHP -->
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/forum/wow_armory_API.php');
+            echo editorForClass('character_class');
+        <!-- ENDPHP --></td>
+	</tr>
+	<tr>
+	<td>Realm</td><td>        
+        <!-- PHP -->
+            echo editorForRealm('realm');
+        <!-- ENDPHP -->
+       </td></tr>
+	</table>
         <br /><br />
-       
-        {L_APPLICATION_WHY}<br />
-        <textarea rows="5" cols="50" name="why"></textarea>
-        
-        <br/><br/>
         
         <input type="submit" name="submit" id ="submit" value="{L_SUBMIT}" class="button1" />
        
