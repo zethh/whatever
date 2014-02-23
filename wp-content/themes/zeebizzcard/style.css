@@ -59,7 +59,7 @@ a:hover, a:active {
 .sticky {}
 /*============================ WRAPPER ============================*/
 #wrapper {
-	width: 1290px;
+	width: 1350px;
 	margin: 75px auto 0 auto;
 }
 #sidewrap, #headwrap {
@@ -86,7 +86,7 @@ a:hover, a:active {
 #wrap {
 	float: right;
 	margin: 0 0 50px 0;
-	width: 940px;
+	width: 1000px;
 	text-align: left;
 	padding: 10px;
 	background: url(images/wrapper.png) repeat;
