@@ -125,10 +125,10 @@ function wpu_integrate_templates() {
 	}
 
 
-	// So, we generate the phpBB outer page if required, then we're all set.
-
-
-
+	//Don't remove application form styling
+	if ($_SERVER['REQUEST_URI'] != "/forum/application.php")
+	{
+		// So, we generate the phpBB outer page if required, then we're all set.
 	if ($wpUnited->get_setting('cssMagic')) { 
 
 		require($wpUnited->get_plugin_path() . 'css-magic.php');
@@ -152,8 +152,9 @@ function wpu_integrate_templates() {
 		$wpuOutputPreStr = '<div style="'. $padding .' margin: 0px;" class="' . $bodyClass . '" ' . $bodyDetails . '>';
 		$wpuOutputPostStr = '</div>';
 	}
-
+}
 	// If the WP theme didn't set the head marker, do it now
+
 	if (!DISABLE_PHPBB_CSS) {
 		$headMarker = '<!--[**HEAD_MARKER**]-->';
 		if( PHPBB_CSS_FIRST) {
@@ -165,11 +166,9 @@ function wpu_integrate_templates() {
 		$wpUnited->set_outer_content(str_replace($headMarker, $wpUnited->get_inner_headinfo(), $wpUnited->get_outer_content())); 
 	}
 
-
 	$wpUnited->set_outer_content(str_replace('<!--[**INNER_CONTENT**]-->', $wpuOutputPreStr . $wpUnited->get_inner_content() . $wpuOutputPostStr, $wpUnited->get_outer_content())); 
 	
 	$wpUnited->clear_inner_content();
-	
 	
 	wpu_output_page($wpUnited->get_outer_content()); 
 	$wpUnited->clear_outer_content();
