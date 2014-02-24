@@ -35,7 +35,7 @@ function editorForClass($name)
 
 	$attr = "name";
 
-	return editorFor($url, $path, $attr, $name, $label);
+	return editorFor($url, $path, $attr, $name, $class);
 }
 
 function editorForRealm($name)
@@ -46,7 +46,7 @@ function editorForRealm($name)
 
 	$attr = "name";
 
-	return editorFor($url, $path, $attr, $name, $label);
+	return editorFor($url, $path, $attr, $name);
 }
 
 ?>
