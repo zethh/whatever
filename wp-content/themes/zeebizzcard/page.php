@@ -1,3 +1,4 @@
+
 <?php get_header(); ?>
 
 	<div id="content">
@@ -11,7 +12,7 @@
 				?>
 				<?php edit_post_link(__( 'Edit', 'themezee_lang' )); ?>
 
-				<div class="entry">
+				<div class="entry">					
 					<?php the_content(); ?>
 					<div class="clear"></div>
 					<?php wp_link_pages(); ?>

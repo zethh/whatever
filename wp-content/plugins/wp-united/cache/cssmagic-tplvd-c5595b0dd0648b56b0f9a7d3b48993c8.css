@@ -1,0 +1,77 @@
+/**
+	This CSS Stylesheet has been parsed with WP-United. The source is print.css.
+	----------------------------------------------------------------------------
+	The CSS in this file has been modified to make it more specific.
+	You should refer to the original CSS files for the underlying style rules.
+	Purge the phpBB cache to re-generate this CSS.	
+	Date/Time generated: February 23, 2014, 11:24 pm
+	
+	WP-United (c) John Wells, licensed under the GNU GPL v2. Underlying CSS copyright not affected.
+**/	
+
+#wpucssmagic .wpucssmagic *{padding: 0;
+margin: 0;}
+#wpucssmagic .wpucssmagic{font: 11pt Verdana, Arial, Helvetica, sans-serif;
+color:#000000;}
+#wpucssmagic .wpucssmagic a:link{color: #000000; text-decoration: none;}
+#wpucssmagic .wpucssmagic a:visited{color: #000000; text-decoration: none;}
+#wpucssmagic .wpucssmagic a:active{color: #000000; text-decoration: none;}
+#wpucssmagic .wpucssmagic img, #wpucssmagic .wpucssmagic .noprint, #wpucssmagic .wpucssmagic #sub-header, #wpucssmagic .wpucssmagic #sub-footer, #wpucssmagic .wpucssmagic .navbar, #wpucssmagic .wpucssmagic .box1, #wpucssmagic .wpucssmagic .divider, #wpucssmagic .wpucssmagic .signature{display: none;}
+#wpucssmagic .wpucssmagic .content img{display: inline;}
+#wpucssmagic .wpucssmagic #wpuwrap{margin: 0 2em;}
+#wpucssmagic .wpucssmagic p{font-size: 85%;}
+#wpucssmagic .wpucssmagic .copyright{font-size: 75%;}
+#wpucssmagic .wpucssmagic .page-number{float:right; width: auto; text-align: right; font-size: 75%;}
+#wpucssmagic .wpucssmagic h1, #wpucssmagic .wpucssmagic h2, #wpucssmagic .wpucssmagic h3, #wpucssmagic .wpucssmagic h1 a, #wpucssmagic .wpucssmagic h2 a, #wpucssmagic .wpucssmagic h3 a{font-family: "Trebuchet MS",georgia,Verdana,Sans-serif;
+color: #000000;
+background: none;
+text-decoration: none;
+font-weight: bold;}
+#wpucssmagic .wpucssmagic h1{font-size: 20pt;}
+#wpucssmagic .wpucssmagic h2{font-size: 16pt; margin-top: 1em;}
+#wpucssmagic .wpucssmagic h3{font-size: 14pt; margin-top: 1em;}
+#wpucssmagic .wpucssmagic .content{font-size: 11pt;
+line-height: 14pt;
+margin-bottom: 1em;
+font-family: "Lucida Grande", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+overflow: hidden;}
+#wpucssmagic .wpucssmagic .postbody a:link, #wpucssmagic .wpucssmagic .postbody a:visited, #wpucssmagic .wpucssmagic .postbody a:hover, #wpucssmagic .wpucssmagic .postbody a:active{text-decoration: underline;
+padding: 0.1em 0.2em;
+margin: -0.1em -0.2em;
+color: #666;
+background: none;
+font-size: 100%;}
+#wpucssmagic .wpucssmagic html>body .postbody a:link:after, #wpucssmagic .wpucssmagic html>body .postbody a:visited:after{content: " (" attr(href) ") ";
+font-size: 90%;
+text-decoration: none;}
+#wpucssmagic .wpucssmagic hr{height: 1px;
+background-color: #999999;
+border-width: 0;}
+#wpucssmagic .wpucssmagic .author{font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 75%;
+margin-bottom: 0.6em;}
+#wpucssmagic .wpucssmagic .date{font-family: Verdana, Arial, Helvetica, sans-serif;
+float: right;
+position: relative;
+text-align: right;
+font-size: 75%;}
+#wpucssmagic .wpucssmagic .postbody .author a:link, #wpucssmagic .wpucssmagic .postbody .author a:visited, #wpucssmagic .wpucssmagic html>body .postbody .author a:link:after, #wpucssmagic .wpucssmagic html>body .postbody .author a:visited:after, #wpucssmagic .wpucssmagic .postquote .quote-by a:link, #wpucssmagic .wpucssmagic .postquote .quote-by a:visited, #wpucssmagic .wpucssmagic html>body .postquote .quote-by a:link:after, #wpucssmagic .wpucssmagic html>body .postquote .quote-by a:visited:after, #wpucssmagic .wpucssmagic html>body .postbody h1 a:link:after, #wpucssmagic .wpucssmagic html>body .postbody h2 a:link:after{text-decoration: none;
+content: "";}
+#wpucssmagic .wpucssmagic .postprofile{display: none;}
+#wpucssmagic .wpucssmagic .grip-show{display:none;}
+#wpucssmagic .wpucssmagic .postquote, #wpucssmagic .wpucssmagic blockquote{font-size: 85%;
+margin: 1em 18% 1em 4%;
+padding: 0.5em;
+position: relative;
+line-height: 1.5em;
+border: 1px #999999 solid;}
+#wpucssmagic .wpucssmagic .postquote img{display: none;}
+#wpucssmagic .wpucssmagic .postquote span{display: block;}
+#wpucssmagic .wpucssmagic .postquote span .postquote{font-size: 100%;}
+#wpucssmagic .wpucssmagic .quote-by, #wpucssmagic .wpucssmagic blockquote cite{color: black;
+display : block;
+font-weight: bold;}
+#wpucssmagic .wpucssmagic ol, #wpucssmagic .wpucssmagic ul{margin-left: 15pt}
+#wpucssmagic .wpucssmagic div.spacer{clear: both;}
+#wpucssmagic .wpucssmagic .skip_link{display: none;}
+#wpucssmagic .wpucssmagic dl.codebox dt{display: none;}

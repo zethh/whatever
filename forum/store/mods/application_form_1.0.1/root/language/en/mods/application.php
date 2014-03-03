@@ -45,9 +45,9 @@ $lang = array_merge($lang, array(
 	'APPLICATION_REALNAME'			=> 'Real name',
 	'APPLICATION_EMAIL'				=> 'E-mail address',
 	'APPLICATION_POSITION'			=> 'Position you would like to have',
-	'APPLICATION_TEAM1'				=> 'Teamname 1',
-	'APPLICATION_TEAM2'				=> 'Teamname 2',
-	'APPLICATION_TEAM3'				=> 'Teamname 3',
+	'APPLICATION_TEAM1'				=> '#swag',
+	'APPLICATION_TEAM2'				=> '#yolo',
+	'APPLICATION_TEAM3'				=> '#why',
 	'APPLICATION_WHY'				=> 'Why should we choose you for this position?',
 ));
 

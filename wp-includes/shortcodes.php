@@ -386,3 +386,43 @@ function strip_shortcode_tag( $m ) {
 }
 
 add_filter('the_content', 'do_shortcode', 11); // AFTER wpautop()
+
+function reset_mbstring_encoding() {
+	mbstring_binary_safe_encoding( true );
+}
+
+function application_form($atts)
+{
+
+		$baseurl = "http://eu.battle.net/api/wow/realm/status";
+
+		$rosterJSON = file_get_contents($baseurl, true);
+
+		$realms = json_decode($rosterJSON, true);
+
+		$content = "<form action='http://www.we-guild.eu/apply-now/' method='post'><fieldset>Realm *<select name='realm'>";
+
+		if (!$realms){
+
+			$content = "Unable to retrieve realms from armory.";
+
+		}else{
+
+			foreach($realms['realms'] as $realm) {
+
+				$content .= "<option>" . $realm['name'] . "</option>";
+
+			}
+
+			$content .= "</select><br>";
+			
+		}
+
+		$content .= "Character * <input type='text' name='character-name'><br><input type='submit' value='Submit'></fieldset></form>";
+
+		$content = $_GET;
+
+	return "LOL";
+}
+
+add_shortcode('app','application_form');

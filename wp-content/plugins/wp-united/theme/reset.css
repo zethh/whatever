@@ -15,7 +15,6 @@
 #wpucssmagic ins {text-decoration: none;}
 #wpucssmagic del {text-decoration: line-through;}
 #wpucssmagic table {border-collapse: collapse;border-spacing: 0;}
-
 #wpucssmagic address,
 #wpucssmagic blockquote,
 #wpucssmagic body, #wpucssmagic dd, #wpucssmagic div,
@@ -28,13 +27,13 @@
 #wpucssmagic li              { display: list-item; }
 #wpucssmagic table           { display: table; border-width: 0; }
 #wpucssmagic table *	{ border-width: 0;}
-#wpucssmagic tr              { display: table-row }
+#wpucssmagic tr              { display: table-row;}
 #wpucssmagic thead           { display: table-header-group }
 #wpucssmagic tbody           { display: table-row-group }
 #wpucssmagic tfoot           { display: table-footer-group }
 #wpucssmagic col             { display: table-column }
 #wpucssmagic colgroup        { display: table-column-group }
-#wpucssmagic td, #wpucssmagic th          { display: table-cell }
+#wpucssmagic td, #wpucssmagic th          { display: table-cell;}
 #wpucssmagic caption         { display: table-caption }
 #wpucssmagic th              { font-weight: bolder; text-align: center }
 #wpucssmagic caption         { text-align: center }
@@ -58,7 +57,7 @@
 #wpucssmagic kbd, #wpucssmagic samp       { font-family: monospace }
 #wpucssmagic pre             { white-space: pre }
 #wpucssmagic button, #wpucssmagic textarea,
-#wpucssmagic input, #wpucssmagic select, #wpucssmagic label   { display: inline-block; width: auto; }
+#wpucssmagic input, #wpucssmagic select, #wpucssmagic label   { display: inline-block; width: 250px; }
 #wpucssmagic big             { font-size: 1.17em }
 #wpucssmagic small, #wpucssmagic sub, #wpucssmagic sup { font-size: .83em }
 #wpucssmagic sub             { vertical-align: sub }

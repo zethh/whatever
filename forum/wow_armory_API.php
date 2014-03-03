@@ -1,6 +1,6 @@
 <?php
 
-function editorFor($url, $path, $attr, $name)
+function editorFor($url, $path, $attr, $name, $default)
 {
 
     $JSON = file_get_contents($url, true);
@@ -17,7 +17,17 @@ function editorFor($url, $path, $attr, $name)
 
         foreach($list[$path] as $item) {
 
-            $editor .= "<option>" . $item[$attr] . "</option>";
+        	if ($item[$attr] == $default){
+
+        		$editor .= "<option selected='" . $item[$attr] . "'>";
+
+        	}else{
+
+        		$editor .= "<option>";
+
+        	}
+
+            $editor .= $item[$attr] . "</option>";
 
         }
 
@@ -27,7 +37,7 @@ function editorFor($url, $path, $attr, $name)
 	return $editor;
 }
 
-function editorForClass($name)
+function editorForClass($name, $default = "")
 {
 	$url = "http://eu.battle.net/api/wow/data/character/classes";
 
@@ -38,7 +48,7 @@ function editorForClass($name)
 	return editorFor($url, $path, $attr, $name, $class);
 }
 
-function editorForRealm($name)
+function editorForRealm($name, $default = "")
 {
 	$url = "http://eu.battle.net/api/wow/realm/status";
 
@@ -46,7 +56,8 @@ function editorForRealm($name)
 
 	$attr = "name";
 
-	return editorFor($url, $path, $attr, $name);
+	return editorFor($url, $path, $attr, $name, $default);
 }
+
 
 ?>

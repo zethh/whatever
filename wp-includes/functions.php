@@ -4188,6 +4188,3 @@ function mbstring_binary_safe_encoding( $reset = false ) {
  *
  * @since 3.7.0
  */
-function reset_mbstring_encoding() {
-	mbstring_binary_safe_encoding( true );
-}

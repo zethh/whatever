@@ -1,0 +1,58 @@
+<head>
+    <title>{L_APPLICATION_PAGETITLE}</title>
+    <style type="text/css">
+        table {border:none; min-width: 90%;}
+        input[type='text'] {width:200px; text-align:center;}
+        select {width:200px;}
+        #appform td {display: table-cell; vertical-align: top; font-weight:700;}
+        td + td {width:65%; font-weight:normal;}
+        textarea {width: 100%; height:100px; resize:none; }
+        #content {font-size: small;}
+        .buttonholder{text-align: center;}
+        input 
+    </style>
+    <script type="text/javascript">
+            function Clear()
+        {    
+           document.getElementById("referer").value= "";
+        }
+    </script>
+
+</head>
+<body>
+    <div class="panel">
+        <div class="inner">
+            <div class="content">
+                <div class="wellcome">{L_APPLICATION_WELCOME_MESSAGE}</div>
+                <form method="post" action="{PROCESS_RAIDFORM}" id="appform"> 
+                    Vale of Eternal Sorrows (Part 1)
+                    <input type="checkbox" name="part1" value="Immerseus">Immerseus<br>
+                    <input type="checkbox" name="part1" value="Fallen Protectors">The Fallen Protectors<br>
+                    <input type="checkbox" name="part1" value="Norushen">Norushen<br>
+                    <input type="checkbox" name="part1" value="Sha of Pride">Sha of Pride<br>
+
+                    Gates of Retribution (Part 2)
+                    <input type="checkbox" name="part2" value="Galakras">Galakras<br>
+                    <input type="checkbox" name="part2" value="Iron Juggernaut">Iron Juggernaut<br>
+                    <input type="checkbox" name="part2" value="Kor'kron Dark Shamans">Kor'kron Dark Shamans<br>
+                    <input type="checkbox" name="part2" value="General Nazgrim">General Nazgrim<br>
+
+                    The Underhold (Part 3)
+                    <input type="checkbox" name="part3" value="Malkorok">Malkorok<br>
+                    <input type="checkbox" name="part3" value="Spoils of Pandaria">Spoils of Pandaria<br>
+                    <input type="checkbox" name="part3" value="Thok the Bloodthirsty">Thok the Bloodthirsty<br>
+
+                    Downfall (Part 4)
+                    <input type="checkbox" name="part4" value="Siegecrafter Blackfuse">Siegecrafter Blackfuse<br>
+                    <input type="checkbox" name="part4" value="Paragons of the Klaxxi">Paragons of the Klaxxi<br>
+                    <input type="checkbox" name="part4" value="Garrosh Hellscream">Garrosh Hellscream<br>
+
+                    <br /><br />
+                    <div class="buttonholder">
+                     <input type="submit" name="submit" id ="submit" value="{L_SUBMIT}" class="button1" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

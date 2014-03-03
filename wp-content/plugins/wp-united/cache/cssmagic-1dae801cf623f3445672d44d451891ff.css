@@ -1,0 +1,53 @@
+/**
+	This CSS Stylesheet has been parsed with WP-United. The source is shortcodes.css.
+	----------------------------------------------------------------------------
+	The CSS in this file has been parsed and cached so the style fixer can read it.
+	You should refer to the original CSS files for the underlying style rules.
+	Purge the phpBB cache to re-generate this CSS.	
+	Date/Time generated: February 23, 2014, 11:21 pm
+	
+	WP-United (c) John Wells, licensed under the GNU GPL v2. Underlying CSS copyright not affected.
+**/	
+
+.short_resume{margin: 15px 0;
+padding-bottom: 5px;
+border-top: 1px solid #ccc;}
+.short_resume .short_resume_jobtitle{font-size: 1.2em;
+font-weight: bold;
+margin: 10px 0 0 0;
+color: #444;}
+.short_resume .short_resume_company{color: #777;
+text-transform: uppercase;
+margin-bottom: 5px;}
+.short_resume .short_resume_date{float: right;
+color: #333;
+padding: 3px 8px;
+border: 1px solid #ddd;
+background: url('http://www.we-guild.eu/wp-content/themes/zeebizzcard/includes/shortcodes/images/resume_button.png') repeat-x #ddd;
+margin-top: -42px;
+margin-right: 5px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+-khtml-border-radius: 3px;
+border-radius: 3px;}
+.short_resume .short_resume_content{clear: right;}
+.short_skill{padding: 10px 5px 0 5px;
+border-top: 1px solid #ddd;}
+.short_skill_title{float: left;
+font-weight: bold;}
+.short_skill p{clear: both;}
+.short_skill_value{float: right;
+height: 20px;
+width: 100px;
+background: url('http://www.we-guild.eu/wp-content/themes/zeebizzcard/includes/shortcodes/images/star_grey.png') repeat-x;}
+.short_skill_value span{display: block;
+height: 20px;
+background: url('http://www.we-guild.eu/wp-content/themes/zeebizzcard/includes/shortcodes/images/star_black.png') repeat-x;}
+.short_skill_value span.one{width: 20px;}
+.short_skill_value span.two{width: 40px;}
+.short_skill_value span.three{width: 60px;}
+.short_skill_value span.four{width: 80px;}
+.short_skill_value span.five{width: 100px;}
+.short_skill_value span.six{width: 120px;}
+.short_skill_value span.seven{width: 140px;}
+.short_skill_value span.eight{width: 160px;}

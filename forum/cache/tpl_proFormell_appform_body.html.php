@@ -1,37 +1,107 @@
-<?php if (!defined('IN_PHPBB')) exit; $this->_tpl_include('overall_header.html'); ?>
+<?php if (!defined('IN_PHPBB')) exit; ?><head>
+    <title><?php echo ((isset($this->_rootref['L_APPLICATION_PAGETITLE'])) ? $this->_rootref['L_APPLICATION_PAGETITLE'] : ((isset($user->lang['APPLICATION_PAGETITLE'])) ? $user->lang['APPLICATION_PAGETITLE'] : '{ APPLICATION_PAGETITLE }')); ?></title>
+    <style type="text/css">
+        table {border:none; min-width: 90%;}
+        input[type='text'] {width:200px; text-align:center;}
+        select {width:200px;}
+        #appform td {display: table-cell; vertical-align: top; font-weight:700;}
+        td + td {width:65%; font-weight:normal;}
+        textarea {width: 100%; height:100px; resize:none; }
+        #content {font-size: small;}
+        .buttonholder{text-align: center;}
+        input 
+    </style>
+    <script type="text/javascript">
+            function Clear()
+        {    
+           document.getElementById("referer").value= "";
+        }
+    </script>
 
-<div class="panel">
-   <div class="inner"><span class="corners-top"><span></span></span>
+</head>
+<body>
+    <div class="panel">
+        <div class="inner">
+            <div class="content">
+                <div class="wellcome"><?php echo ((isset($this->_rootref['L_APPLICATION_WELCOME_MESSAGE'])) ? $this->_rootref['L_APPLICATION_WELCOME_MESSAGE'] : ((isset($user->lang['APPLICATION_WELCOME_MESSAGE'])) ? $user->lang['APPLICATION_WELCOME_MESSAGE'] : '{ APPLICATION_WELCOME_MESSAGE }')); ?></div>
+                <form method="post" action="<?php echo (isset($this->_rootref['PROCESS_APPFORM'])) ? $this->_rootref['PROCESS_APPFORM'] : ''; ?>" id="appform"> 
 
-   <div class="content">
-      
-        <h2><?php echo ((isset($this->_rootref['L_APPLICATION_PAGETITLE'])) ? $this->_rootref['L_APPLICATION_PAGETITLE'] : ((isset($user->lang['APPLICATION_PAGETITLE'])) ? $user->lang['APPLICATION_PAGETITLE'] : '{ APPLICATION_PAGETITLE }')); ?></h2>
-        
-        <span style="font-size: 1.3em;"><?php echo ((isset($this->_rootref['L_APPLICATION_WELCOME_MESSAGE'])) ? $this->_rootref['L_APPLICATION_WELCOME_MESSAGE'] : ((isset($user->lang['APPLICATION_WELCOME_MESSAGE'])) ? $user->lang['APPLICATION_WELCOME_MESSAGE'] : '{ APPLICATION_WELCOME_MESSAGE }')); ?><br /><br /><br />
-       
-        <form method="post" action="<?php echo (isset($this->_rootref['PROCESS_APPFORM'])) ? $this->_rootref['PROCESS_APPFORM'] : ''; ?>" id="appform"> 
-        <?php echo ((isset($this->_rootref['L_APPLICATION_REALNAME'])) ? $this->_rootref['L_APPLICATION_REALNAME'] : ((isset($user->lang['APPLICATION_REALNAME'])) ? $user->lang['APPLICATION_REALNAME'] : '{ APPLICATION_REALNAME }')); ?> <input type="text" name="name" /><br />
-        <?php echo ((isset($this->_rootref['L_APPLICATION_POSITION'])) ? $this->_rootref['L_APPLICATION_POSITION'] : ((isset($user->lang['APPLICATION_POSITION'])) ? $user->lang['APPLICATION_POSITION'] : '{ APPLICATION_POSITION }')); ?>
-        <select name="postion">
-        <option value="<?php echo ((isset($this->_rootref['L_APPLICATION_TEAM1'])) ? $this->_rootref['L_APPLICATION_TEAM1'] : ((isset($user->lang['APPLICATION_TEAM1'])) ? $user->lang['APPLICATION_TEAM1'] : '{ APPLICATION_TEAM1 }')); ?>"><?php echo ((isset($this->_rootref['L_APPLICATION_TEAM1'])) ? $this->_rootref['L_APPLICATION_TEAM1'] : ((isset($user->lang['APPLICATION_TEAM1'])) ? $user->lang['APPLICATION_TEAM1'] : '{ APPLICATION_TEAM1 }')); ?></option>
-        <option value="<?php echo ((isset($this->_rootref['L_APPLICATION_TEAM2'])) ? $this->_rootref['L_APPLICATION_TEAM2'] : ((isset($user->lang['APPLICATION_TEAM2'])) ? $user->lang['APPLICATION_TEAM2'] : '{ APPLICATION_TEAM2 }')); ?>"><?php echo ((isset($this->_rootref['L_APPLICATION_TEAM2'])) ? $this->_rootref['L_APPLICATION_TEAM2'] : ((isset($user->lang['APPLICATION_TEAM2'])) ? $user->lang['APPLICATION_TEAM2'] : '{ APPLICATION_TEAM2 }')); ?></option>
-        <option value="<?php echo ((isset($this->_rootref['L_APPLICATION_TEAM3'])) ? $this->_rootref['L_APPLICATION_TEAM3'] : ((isset($user->lang['APPLICATION_TEAM3'])) ? $user->lang['APPLICATION_TEAM3'] : '{ APPLICATION_TEAM3 }')); ?>"><?php echo ((isset($this->_rootref['L_APPLICATION_TEAM3'])) ? $this->_rootref['L_APPLICATION_TEAM3'] : ((isset($user->lang['APPLICATION_TEAM3'])) ? $user->lang['APPLICATION_TEAM3'] : '{ APPLICATION_TEAM3 }')); ?></option>
-        </select>
-        <br /><br />
-       
-        <?php echo ((isset($this->_rootref['L_APPLICATION_WHY'])) ? $this->_rootref['L_APPLICATION_WHY'] : ((isset($user->lang['APPLICATION_WHY'])) ? $user->lang['APPLICATION_WHY'] : '{ APPLICATION_WHY }')); ?><br />
-        <textarea rows="5" cols="50" name="why"></textarea>
-        
-        <br/><br/>
-        
-        <input type="submit" name="submit" id ="submit" value="<?php echo ((isset($this->_rootref['L_SUBMIT'])) ? $this->_rootref['L_SUBMIT'] : ((isset($user->lang['SUBMIT'])) ? $user->lang['SUBMIT'] : '{ SUBMIT }')); ?>" class="button1" />
-       
-        </span>
-      
-   </div>
+                    <table class="appform">
+                        <tr>
+                            <td>Character Name</td>
+                            <td><input type="text" name="character_name" /></td>
+                        </tr>
+                        <tr>
+                            <td>Class</td>
+                            <td>
+                                <?php 
+                                require_once($_SERVER['DOCUMENT_ROOT'] . '/forum/wow_armory_API.php');
+                                echo editorForClass('character_class');
+                                 ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Realm</td>
+                            <td>        
+                                <?php 
+                                echo editorForRealm('realm', 'Auchindoun');
+                                 ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><?php echo ((isset($this->_rootref['L_QUESTION_1'])) ? $this->_rootref['L_QUESTION_1'] : ((isset($user->lang['QUESTION_1'])) ? $user->lang['QUESTION_1'] : '{ QUESTION_1 }')); ?></td>
+                            <td><textarea name="question1" form="appform"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo ((isset($this->_rootref['L_QUESTION_2'])) ? $this->_rootref['L_QUESTION_2'] : ((isset($user->lang['QUESTION_2'])) ? $user->lang['QUESTION_2'] : '{ QUESTION_2 }')); ?></td>
+                            <td><textarea name="question2" form="appform"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo ((isset($this->_rootref['L_QUESTION_3'])) ? $this->_rootref['L_QUESTION_3'] : ((isset($user->lang['QUESTION_3'])) ? $user->lang['QUESTION_3'] : '{ QUESTION_3 }')); ?></td>
+                            <td><textarea name="question3" form="appform"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo ((isset($this->_rootref['L_QUESTION_4'])) ? $this->_rootref['L_QUESTION_4'] : ((isset($user->lang['QUESTION_4'])) ? $user->lang['QUESTION_4'] : '{ QUESTION_4 }')); ?></td>
+                            <td><textarea name="question4" form="appform"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo ((isset($this->_rootref['L_QUESTION_5'])) ? $this->_rootref['L_QUESTION_5'] : ((isset($user->lang['QUESTION_5'])) ? $user->lang['QUESTION_5'] : '{ QUESTION_5 }')); ?></td>
+                            <td><textarea name="question5" form="appform"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo ((isset($this->_rootref['L_QUESTION_6'])) ? $this->_rootref['L_QUESTION_6'] : ((isset($user->lang['QUESTION_6'])) ? $user->lang['QUESTION_6'] : '{ QUESTION_6 }')); ?></td>
+                            <td><textarea name="question6" form="appform"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo ((isset($this->_rootref['L_QUESTION_7'])) ? $this->_rootref['L_QUESTION_7'] : ((isset($user->lang['QUESTION_7'])) ? $user->lang['QUESTION_7'] : '{ QUESTION_7 }')); ?></td>
+                            <td><textarea name="question7" form="appform"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo ((isset($this->_rootref['L_QUESTION_8'])) ? $this->_rootref['L_QUESTION_8'] : ((isset($user->lang['QUESTION_8'])) ? $user->lang['QUESTION_8'] : '{ QUESTION_8 }')); ?></td>
+                            <td><textarea name="question8" form="appform"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo ((isset($this->_rootref['L_QUESTION_9'])) ? $this->_rootref['L_QUESTION_9'] : ((isset($user->lang['QUESTION_9'])) ? $user->lang['QUESTION_9'] : '{ QUESTION_9 }')); ?></td>
+                            <td>
+                            <input type="radio" name="question9" value="WoW Progress">WoW Progress<br>
+                            <input type="radio" name="question9" value="From a friend">From a friend<br>
+                            <input type="radio" name="question9" value="From a guild member">From a guild member<br>
+                            <input type="radio" name="question9" value="MMO-Champion">MMO-Champion<br>
+                            <input type="radio" name="question9" value="WoW-EU Forums">WoW-EU Forums<br>
+                            <input type="text" name="referer" onClick="Clear();" id="referer" value ="If you have people who can vouch for you list them here..." style="width: 500px;">
+                            </td>
+                        </tr>
+                            <td><?php echo ((isset($this->_rootref['L_QUESTION_10'])) ? $this->_rootref['L_QUESTION_10'] : ((isset($user->lang['QUESTION_10'])) ? $user->lang['QUESTION_10'] : '{ QUESTION_10 }')); ?></td>
+                            <td><textarea name="question10" form="appform"></textarea></td>
+                        </tr>
 
-   <span class="corners-bottom"><span></span></span></div>
-</div>
-
-
-<?php $this->_tpl_include('overall_footer.html'); ?>
+                    </table>
+                    <br /><br />
+                    <div class="buttonholder">
+                     <input type="submit" name="submit" id ="submit" value="<?php echo ((isset($this->_rootref['L_SUBMIT'])) ? $this->_rootref['L_SUBMIT'] : ((isset($user->lang['SUBMIT'])) ? $user->lang['SUBMIT'] : '{ SUBMIT }')); ?>" class="button1" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

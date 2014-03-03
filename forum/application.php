@@ -36,11 +36,11 @@ $submit = (isset($_POST['submit'])) ? true : false;
 
 $apply_subject  = sprintf("[%s] %s",$_POST['character_class'],$_POST['character_name']);
 
-$armoryURL = "[url=http://eu.battle.net/wow/en/character/" . $_POST['realm'] . "/" . $_POST['character_name'] . "/advanced]Armory[/url]";
+$armoryURL = "[url=http://eu.battle.net/wow/en/character/" . $_POST['realm'] . "/" . rawurlencode($_POST['character_name']) . "/advanced]Armory[/url]";
 
-$wowprogressURL = "[url=http://www.wowprogress.com/character/eu/" . $_POST['realm'] . "/" . $_POST['character_name']. "]Wowprogress[/url]";
+$wowprogressURL = "[url=http://www.wowprogress.com/character/eu/" . $_POST['realm'] . "/" . rawurlencode($_POST['character_name']). "]Wowprogress[/url]";
 
-$raidbotsURL = "[url=http://www.raidbots.com/epeenbot/eu/" . $_POST['realm'] . "/" . $_POST['character_name'] . "]Raidbots[/url]";
+$raidbotsURL = "[url=http://www.raidbots.com/epeenbot/eu/" . $_POST['realm'] . "/" . rawurlencode($_POST['character_name']) . "]Raidbots[/url]";
 
 
 //Questions need to be gotten from the database, then gone trough here & the html form in a for or foreach loop

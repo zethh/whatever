@@ -41,7 +41,8 @@ if ( empty($withcomments) && !is_single() ) {
 <div id="page">
 
 <div id="header" role="banner">
-	<div id="headerimg">
+	<div id="headerimg"> 
+		<?php echo $_SERVER['DOCUMENT_ROOT'];?>
 		<h1><a href="<?php echo home_url(); ?>/"><?php bloginfo('name'); ?></a></h1>
 		<div class="description"><?php bloginfo('description'); ?></div>
 	</div>

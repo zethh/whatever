@@ -1,0 +1,34 @@
+<!-- INCLUDE overall_header.html -->
+
+<div class="panel">
+   <div class="inner"><span class="corners-top"><span></span></span>
+
+   <div class="content">
+        <h2>{L_APPLICATION_PAGETITLE}</h2>
+        <?php echo "lol";?>
+        <span style="font-size: 1.3em;">{L_APPLICATION_WELCOME_MESSAGE}<br /><br /><br />
+       
+        <form method="post" action="{PROCESS_APPFORM}" id="appform"> 
+        {L_APPLICATION_REALNAME} <input type="text" name="name" /><br />
+        {L_APPLICATION_POSITION}
+        <select name="postion">
+            <option>{REALMS}</option> 
+        </select>
+        <br /><br />
+       
+        {L_APPLICATION_WHY}<br />
+        <textarea rows="5" cols="50" name="why"></textarea>
+        
+        <br/><br/>
+        
+        <input type="submit" name="submit" id ="submit" value="{L_SUBMIT}" class="button1" />
+       
+        </span>
+      
+   </div>
+
+   <span class="corners-bottom"><span></span></span></div>
+</div>
+
+
+<!-- INCLUDE overall_footer.html --> 

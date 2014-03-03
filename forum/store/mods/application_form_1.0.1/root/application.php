@@ -25,7 +25,7 @@ if ($user->data['user_id'] == ANONYMOUS)
 include($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
 
 // Let's set the configuration, this is the ID of the forum where the post goes to
-$forumid_send = 2;
+$forumid_send = 10;
 
 $submit = (isset($_POST['submit'])) ? true : false;
 

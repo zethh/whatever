@@ -42,12 +42,16 @@ $lang = array_merge($lang, array(
 	'APPLICATION_PAGETITLE'			=> 'Application - Whatever',
 	'APPLICATION_WELCOME_MESSAGE'	=> 'OPEN - Recruiting for Warlords of Draenor<br /><br />
 										We always consider exceptional applications of all classes, even if we are not actively seeking said class.<br /><br />
-										Whatever<br />
-										25 Man raiding guild on Auchindoun-EU<br /><br />
-										Whatever is a 25 man european raiding community, now residing on the Auchindoun-EU server. The guild was established on 28/08/2006 on the realm Xavius with a single ambition in mind, to come together as a group, and slay some dragons on the internet each week.<br />
-										Since its inception, the guild has competed at the top-end of server charts on Xavius,Ravencrest and now Auchindoun. Over the years, the gulid has made steady improvement, and is continually looking onwards and upwards.<br />
-										The main focus of the guild has always been to push cutting edge content when it is current, impossible is not a word in the guild members vocabularly, and it is that drive which has managed to keep the guild trudging forward 7 years since its creation.<br />
-										The guild has retained a steady 4 day raiding schedule for the past few years, with on a few occasions an extra 5th raid day has been added on occasion during the first week or two of progression. Furthermore, we are strict with our raiding hours, with only the rare extension for an extra try or two if a boss is close to being downed.',
+										<b>Progression Raid Schedule</b><br />
+										Monday: 20:00 - 00:00<br />
+										Tuesday: Off day*<br />
+										Wednesday: 20:00 - 00:00<br />
+										Thursday: 20:00 - 00:00<br />
+										Friday: Off day<br />
+										Saturday: Off day<br />
+										Sunday: 20:00 - 00:00<br />
+										Invites start at 19:45. It is expected that our raiders are online ready for invites and moving towards the instance to help focus their mindset towards the night ahead.<br />
+										* Sometimes added as an additional raid day during initial week or two of progression',
 	'APPLICATION_WHY'				=> 'Why should we choose you for this position?',
 	'CHARACTER_NAME'					=> 'Character Name:',
 	'CLASS'								=> 'Class:',

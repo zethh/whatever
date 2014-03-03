@@ -14,3 +14,72 @@
 [20-Feb-2014 23:36:10 UTC] PHP Parse error:  syntax error, unexpected '/' in /home/zethh/public_html/whatever/wp-includes/shortcodes.php on line 426
 [20-Feb-2014 23:36:12 UTC] PHP Parse error:  syntax error, unexpected '/' in /home/zethh/public_html/whatever/wp-includes/shortcodes.php on line 426
 [20-Feb-2014 23:36:14 UTC] PHP Parse error:  syntax error, unexpected '/' in /home/zethh/public_html/whatever/wp-includes/shortcodes.php on line 426
+[23-Feb-2014 03:25:30 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/zethh/public_html/whatever/forum/includes/wow_armory_API.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/zethh/public_html/whatever/forum/includes/template.php(230) : eval()'d code on line 23
+[23-Feb-2014 03:25:37 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/zethh/public_html/whatever/forum/cache/wow_armory_API.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/zethh/public_html/whatever/forum/cache/tpl_proFormell_appform_body.html.php on line 23
+[23-Feb-2014 03:28:10 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/zethh/public_html/whatever/wow_armory_API.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/zethh/public_html/whatever/forum/includes/template.php(230) : eval()'d code on line 23
+[23-Feb-2014 15:24:09 UTC] PHP Parse error:  syntax error, unexpected 'L_APPLICATION_PAGETITLE' (T_STRING) in /home/zethh/public_html/whatever/forum/includes/template.php(230) : eval()'d code on line 14
+[23-Feb-2014 15:24:23 UTC] PHP Parse error:  syntax error, unexpected 'L_APPLICATION_PAGETITLE' (T_STRING) in /home/zethh/public_html/whatever/forum/includes/template.php(230) : eval()'d code on line 14
+[23-Feb-2014 23:25:25 UTC] PHP Fatal error:  Call to undefined function wpu_integrate_templates() in /home/zethh/public_html/whatever/forum/includes/hooks/hook_wp-united.php on line 192
+[24-Feb-2014 00:08:38 UTC] PHP Parse error:  syntax error, unexpected 'private' (T_PRIVATE) in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 3
+[24-Feb-2014 00:09:03 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 17
+[24-Feb-2014 10:08:15 UTC] PHP Fatal error:  Cannot redeclare WoWCharacter::$class in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 25
+[24-Feb-2014 10:08:15 UTC] PHP Fatal error:  Cannot redeclare WoWCharacter::$class in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 25
+[24-Feb-2014 10:09:00 UTC] PHP Fatal error:  Cannot redeclare WoWCharacter::$class in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 25
+[24-Feb-2014 16:58:16 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 58
+[24-Feb-2014 16:58:37 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 58
+[24-Feb-2014 16:58:40 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 58
+[24-Feb-2014 17:00:14 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 58
+[24-Feb-2014 17:02:06 UTC] PHP Fatal error:  Call to undefined function file_get_html() in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 56
+[24-Feb-2014 17:12:54 UTC] PHP Fatal error:  Call to a member function getElementByTagName() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 64
+[24-Feb-2014 17:13:58 UTC] PHP Fatal error:  Call to a member function getElementByTagName() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 64
+[24-Feb-2014 17:51:40 UTC] PHP Fatal error:  Call to a member function getElementByTagName() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 76
+[24-Feb-2014 17:51:50 UTC] PHP Fatal error:  Call to a member function getElementByTagName() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 76
+[24-Feb-2014 17:51:56 UTC] PHP Fatal error:  Call to a member function getElementByTagName() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 76
+[24-Feb-2014 17:52:18 UTC] PHP Fatal error:  Call to a member function getElementsByTagName() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 76
+[24-Feb-2014 17:52:37 UTC] PHP Fatal error:  Call to a member function getElementsByTagName() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 76
+[24-Feb-2014 17:53:18 UTC] PHP Fatal error:  Call to a member function getElementsByTagName() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 76
+[24-Feb-2014 17:53:42 UTC] PHP Fatal error:  Call to a member function getElementsByTagName() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 77
+[24-Feb-2014 17:53:51 UTC] PHP Fatal error:  Call to a member function getElementsByTagName() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 77
+[24-Feb-2014 17:54:05 UTC] PHP Catchable fatal error:  Object of class LibXMLError could not be converted to string in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 68
+[24-Feb-2014 17:55:19 UTC] PHP Fatal error:  Call to undefined function display_xml_error() in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 68
+[24-Feb-2014 17:56:27 UTC] PHP Fatal error:  Call to a member function getElementsByTagName() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 77
+[24-Feb-2014 18:00:01 UTC] PHP Fatal error:  Call to a member function getElementsByTagName() on a non-object in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 77
+[24-Feb-2014 18:01:11 UTC] PHP Parse error:  syntax error, unexpected '$links' (T_VARIABLE) in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 68
+[24-Feb-2014 18:49:46 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 28
+[24-Feb-2014 19:30:20 UTC] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 93
+[24-Feb-2014 19:36:24 UTC] PHP Fatal error:  Function name must be a string in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 97
+[24-Feb-2014 20:21:01 UTC] PHP Fatal error:  Call to undefined function get_items_for_all_slots() in /home/zethh/public_html/whatever/forum/includes/template.php(230) : eval()'d code on line 9
+[24-Feb-2014 20:48:21 UTC] PHP Catchable fatal error:  Object of class DOMElement could not be converted to string in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 149
+[24-Feb-2014 20:48:22 UTC] PHP Catchable fatal error:  Object of class DOMElement could not be converted to string in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 149
+[24-Feb-2014 20:48:27 UTC] PHP Catchable fatal error:  Object of class DOMElement could not be converted to string in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 149
+[24-Feb-2014 20:51:18 UTC] PHP Parse error:  syntax error, unexpected 's' (T_STRING) in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 148
+[24-Feb-2014 20:51:33 UTC] PHP Parse error:  syntax error, unexpected 's' (T_STRING) in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 148
+[24-Feb-2014 20:51:49 UTC] PHP Parse error:  syntax error, unexpected 's' (T_STRING) in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 148
+[24-Feb-2014 21:04:54 UTC] PHP Parse error:  syntax error, unexpected ':' in /home/zethh/public_html/whatever/forum/includes/template.php(230) : eval()'d code on line 10
+[24-Feb-2014 21:05:26 UTC] PHP Parse error:  syntax error, unexpected ':' in /home/zethh/public_html/whatever/forum/includes/template.php(230) : eval()'d code on line 9
+[24-Feb-2014 21:13:16 UTC] PHP Catchable fatal error:  Object of class DOMElement could not be converted to string in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 132
+[24-Feb-2014 21:18:26 UTC] PHP Fatal error:  Cannot use object of type DOMNodeList as array in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 134
+[24-Feb-2014 21:18:39 UTC] PHP Fatal error:  Cannot use object of type DOMNodeList as array in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 134
+[24-Feb-2014 21:19:36 UTC] PHP Fatal error:  Cannot use object of type DOMNodeList as array in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 136
+[24-Feb-2014 21:33:23 UTC] PHP Fatal error:  Call to undefined method DOMNodeList::getAttribute() in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 146
+[24-Feb-2014 21:33:33 UTC] PHP Fatal error:  Call to undefined method DOMNodeList::getAttribute() in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 146
+[24-Feb-2014 21:33:55 UTC] PHP Fatal error:  Call to undefined method DOMNodeList::getAttribute() in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 146
+[24-Feb-2014 21:48:04 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/zethh/public_html/whatever/forum/wow_armory_API.php on line 116
+[25-Feb-2014 17:52:43 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home/zethh/public_html/whatever/wp-content/plugins/whatever-api/whatever-api.php on line 17
+[25-Feb-2014 17:53:37 UTC] PHP Parse error:  syntax error, unexpected ''http:/' (T_ENCAPSED_AND_WHITESPACE), expecting ')' in /home/zethh/public_html/whatever/wp-content/plugins/whatever-api/whatever-api.php on line 265
+[25-Feb-2014 17:53:57 UTC] PHP Warning:  require_once(vendor/autoload.php): failed to open stream: No such file or directory in /home/zethh/public_html/whatever/wp-content/plugins/whatever-api/whatever-api.php on line 18
+[25-Feb-2014 17:53:57 UTC] PHP Fatal error:  require_once(): Failed opening required 'vendor/autoload.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/zethh/public_html/whatever/wp-content/plugins/whatever-api/whatever-api.php on line 18
+[25-Feb-2014 18:56:38 UTC] PHP Parse error:  syntax error, unexpected 'protected' (T_PROTECTED), expecting ',' or ';' in /home/zethh/public_html/whatever/wp-content/plugins/whatever-api/whatever-api.php on line 303
+[27-Feb-2014 13:29:36 UTC] PHP Fatal error:  Cannot redeclare get_wpu_newposts() (previously declared in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php:332) in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php on line 386
+[27-Feb-2014 13:29:40 UTC] PHP Fatal error:  Cannot redeclare get_wpu_newposts() (previously declared in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php:332) in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php on line 386
+[27-Feb-2014 13:29:44 UTC] PHP Fatal error:  Cannot redeclare get_wpu_newposts() (previously declared in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php:332) in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php on line 386
+[27-Feb-2014 13:29:47 UTC] PHP Fatal error:  Cannot redeclare get_wpu_newposts() (previously declared in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php:332) in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php on line 386
+[27-Feb-2014 13:29:50 UTC] PHP Fatal error:  Cannot redeclare get_wpu_newposts() (previously declared in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php:332) in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php on line 386
+[27-Feb-2014 13:30:15 UTC] PHP Fatal error:  Cannot redeclare get_wpu_newposts() (previously declared in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php:332) in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php on line 386
+[27-Feb-2014 13:30:20 UTC] PHP Fatal error:  Cannot redeclare get_wpu_newposts() (previously declared in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php:332) in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php on line 386
+[27-Feb-2014 13:30:26 UTC] PHP Fatal error:  Cannot redeclare get_wpu_newposts() (previously declared in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php:332) in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php on line 386
+[27-Feb-2014 13:33:33 UTC] PHP Fatal error:  Cannot redeclare get_wpu_newposts() (previously declared in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php:332) in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php on line 386
+[27-Feb-2014 13:35:21 UTC] PHP Fatal error:  Cannot redeclare get_wpu_newposts() (previously declared in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php:332) in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php on line 386
+[27-Feb-2014 13:35:25 UTC] PHP Fatal error:  Cannot redeclare get_wpu_newposts() (previously declared in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php:332) in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php on line 386
+[28-Feb-2014 12:03:54 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/widgets.php on line 43
+[28-Feb-2014 12:25:36 UTC] PHP Parse error:  syntax error, unexpected '.' in /home/zethh/public_html/whatever/wp-content/plugins/wp-united/template-tags.php on line 324

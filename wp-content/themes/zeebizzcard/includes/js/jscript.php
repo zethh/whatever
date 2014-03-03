@@ -24,7 +24,7 @@ function themezee_jscript_navi_menus() {
 							$(this).find('ul:first').css({visibility: 'visible',display: 'none'}).slideDown(350);
 						},function(){
 							$(this).find('ul:first').css({visibility: 'hidden'});
-						});
+						});				
 					});
 				//]]>
 				</script>";

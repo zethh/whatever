@@ -125,7 +125,7 @@ function wpu_integrate_templates() {
 	}
 
 
-	//Don't remove application form styling
+	//Don't use css magic on application page
 	if ($_SERVER['REQUEST_URI'] != "/forum/application.php")
 	{
 		// So, we generate the phpBB outer page if required, then we're all set.

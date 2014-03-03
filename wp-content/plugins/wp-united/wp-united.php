@@ -89,7 +89,8 @@ function wpu_uninstall() {
 		'wpu-enabled',
 		'widget_wp-united-loginuser-info',
 		'widget_wp-united-latest-topics',
-		'widget_wp-united-latest-posts'
+		'widget_wp-united-latest-posts',
+		'widget_wp-united-unread-posts'
 	);
 	
 	foreach($options as $option) {

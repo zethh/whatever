@@ -305,8 +305,68 @@ function get_wpu_phpbb_stats($args='') {
 	return $output;
 
 }
+/**
+ * Displays a link to search phpBB unread posts (together with number of posts)
+ * @param string args
+ * @author Strel
+ */
+function wpu_unreadposts_link(){
+	echo get_wpu_unreadposts_link();
+}
+/**
+ * Returns a link to search phpBB unread posts (together with number of posts)
+ * @param string args
+ * @author Strel
+ */
+function get_wpu_unreadposts_link(){
+	global $phpbbForum, $phpEx;
+	if( $phpbbForum->user_logged_in() ) {
+		return '<a href="'. $phpbbForum->append_sid($phpbbForum->get_board_url() . 'search.'.$phpEx.'?search_id=unreadposts') . '"><strong>' . get_wpu_unreadposts() . "</strong>&nbsp;". __('unread posts', 'wp-united') . "</a>";
+	}
+}
+/**
+ * Returns the number of unread posts
+ * @author Strel
+ */
+function get_wpu_unreadposts() {
+	global $db, $phpbbForum;
+	if( $phpbbForum->user_logged_in() ) {
+		$fStateChanged = $phpbbForum->foreground();
+		$user_id = $phpbbForum->get_userdata('user_id');
+		$user_reg = $phpbbForum->get_userdata('user_regdate');
+		$sql_array = array(
+			'SELECT'		=> 'COUNT(t.topic_id) as total, t.topic_last_post_time, tt.mark_time as topic_mark_time, ft.mark_time as forum_mark_time',
 
+			'FROM'			=> array(TOPICS_TABLE => 't'),
 
+			'LEFT_JOIN'		=> array(
+				array(
+					'FROM'	=> array(TOPICS_TRACK_TABLE => 'tt'),
+					'ON'	=> "tt.user_id = $user_id AND t.topic_id = tt.topic_id",
+				),
+				array(
+					'FROM'	=> array(FORUMS_TRACK_TABLE => 'ft'),
+					'ON'	=> "ft.user_id = $user_id AND t.forum_id = ft.forum_id",
+				),
+			),
+
+			'WHERE'			=> " t.topic_last_post_time > $user_reg AND
+				((tt.mark_time IS NOT NULL AND t.topic_last_post_time > tt.mark_time) OR
+				(tt.mark_time IS NULL AND ft.mark_time IS NOT NULL AND t.topic_last_post_time > ft.mark_time) OR
+				(tt.mark_time IS NULL AND ft.mark_time IS NULL))
+				",
+		);
+
+		$sql = $db->sql_build_query('SELECT', $sql_array);
+		$result = $db->sql_query_limit($sql, 0, 0);
+		if( $result ) {
+			$row = $db->sql_fetchrow($result);
+			$db->sql_freeresult($result);
+			$phpbbForum->restore_state($fStateChanged);
+			return $row['total'];
+		}
+	}
+}
 /**
  * Displays a link to search phpBB posts since the user's last visit (together with number of posts)
  * @param string args
@@ -605,7 +665,7 @@ function get_wpu_useronlinelist($args = '') {
 /**
  * Displays info about the current user, or a login form if they are logged out
  */
-	function wpu_login_user_info($args) {
+function wpu_login_user_info($args) {
 	echo get_wpu_login_user_info($args);
 }
 
@@ -617,7 +677,7 @@ function get_wpu_useronlinelist($args = '') {
 function get_wpu_login_user_info($args) {
 	global $user_ID, $db, $auth, $phpbbForum, $wpUnited, $phpEx, $config;
 	
-	$defaults = array('before' => '<li>', 'after' => '</li>', 'showPMs' => 1, 'showLoginForm' => 1, 'showRankBlock' => 1, 'showNewPosts' => 1, 'showWriteLink' => 1, 'showAdminLinks' => 1, 'autoLogin' => 1);
+	$defaults = array('before' => '<li>', 'after' => '</li>', 'showPMs' => 0, 'showLoginForm' => 1, 'showRankBlock' => 1, 'showNewPosts' => 1,  'showUnreadPosts' => 1, 'showWriteLink' => 1, 'showAdminLinks' => 1, 'autoLogin' => 1);
 	extract(_wpu_process_args($args, $defaults));
 
 	$ret = '';
@@ -642,6 +702,10 @@ function get_wpu_login_user_info($args) {
 
 		if ( $showNewPosts ) {
 			$ret .= $before .  get_wpu_newposts_link() . $after;
+		}
+
+		if ( $showUnreadPosts ){
+			$ret .= $before . get_wpu_unreadposts_link() . $after;
 		}
 		
 		$fStateChanged = $phpbbForum->foreground();
