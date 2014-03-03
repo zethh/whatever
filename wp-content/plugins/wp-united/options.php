@@ -43,7 +43,7 @@ define('WPU_DISABLE', FALSE);
  * However, if you have dynamic elements in your header or footer, then you will want to keep this option off.
  * To turn it on, change FALSE to TRUE.
  */
-define('WPU_CACHE_ENABLED', TRUE);
+define('WPU_CACHE_ENABLED', FALSE);
 
 
 
@@ -54,7 +54,7 @@ define('WPU_CACHE_ENABLED', TRUE);
  * There should be no reason to turn this off, since this core code should never change, and does not need to be prepared each time. 
  * If you are receiving unknown PHP errors and think this might be the cause, you can turn it off to aid in debugging.
  */
-define('WPU_CORE_CACHE_ENABLED', TRUE);
+define('WPU_CORE_CACHE_ENABLED', FALSE);
 
 
 /**

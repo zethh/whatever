@@ -18,9 +18,7 @@
 
 			</div>
 
-			<?php themezee_footer_after(); // hook after #footer ?>
-
-			
+			<?php themezee_footer_after(); // hook after #footer ?>	
 
 		</div><!-- end #contentwrap -->
 

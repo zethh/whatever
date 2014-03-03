@@ -8,11 +8,11 @@
 	"buffers":
 	[
 		{
-			"file": "forum/style.php",
+			"file": "/C/Users/z/Documents/GitHub/whatever/we.sublime-project",
 			"settings":
 			{
-				"buffer_size": 8316,
-				"line_ending": "Unix"
+				"buffer_size": 80,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -47,23 +47,23 @@
 	},
 	"file_history":
 	[
-		"/C/Users/zethh/Documents/GitHub/whatever/wp-content/themes/zeebizzcard/style.css",
-		"/C/Users/zethh/Documents/GitHub/whatever/forum/styles/prosilver/template/editor.js",
-		"/C/Users/zethh/AppData/Roaming/Sublime Text 3/Packages/User/sftp_servers/whatever",
-		"/C/Users/zethh/Documents/GitHub/whatever/wp-content/plugins/wow-guild-retrieve/wow-guild.php",
-		"/C/Users/zethh/Documents/GitHub/whatever/forum/search.php",
-		"/C/Users/zethh/Documents/GitHub/whatever/forum/viewforum.php",
-		"/C/Users/zethh/Documents/GitHub/whatever/forum/viewtopic.php",
-		"/C/Users/zethh/Documents/GitHub/whatever/forum/adm/style/acp_forums.html",
-		"/C/Users/zethh/Documents/GitHub/whatever/forum/includes/functions_display.php",
-		"/C/Users/zethh/Documents/GitHub/whatever/forum/includes/acp/acp_forums.php",
-		"/C/Users/zethh/Documents/GitHub/whatever/forum/language/en/acp/forums.php",
-		"/C/Users/zethh/Documents/GitHub/whatever/forum/language/en/acp/permissions_phpbb.php",
-		"/C/Users/zethh/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap"
+		"/C/Users/z/Documents/GitHub/whatever/wp-content/themes/zeebizzcard/style.css",
+		"/C/Users/z/Documents/GitHub/whatever/forum/styles/prosilver/template/editor.js",
+		"/C/Users/z/AppData/Roaming/Sublime Text 3/Packages/User/sftp_servers/whatever",
+		"/C/Users/z/Documents/GitHub/whatever/wp-content/plugins/wow-guild-retrieve/wow-guild.php",
+		"/C/Users/z/Documents/GitHub/whatever/forum/search.php",
+		"/C/Users/z/Documents/GitHub/whatever/forum/viewforum.php",
+		"/C/Users/z/Documents/GitHub/whatever/forum/viewtopic.php",
+		"/C/Users/z/Documents/GitHub/whatever/forum/adm/style/acp_forums.html",
+		"/C/Users/z/Documents/GitHub/whatever/forum/includes/functions_display.php",
+		"/C/Users/z/Documents/GitHub/whatever/forum/includes/acp/acp_forums.php",
+		"/C/Users/z/Documents/GitHub/whatever/forum/language/en/acp/forums.php",
+		"/C/Users/z/Documents/GitHub/whatever/forum/language/en/acp/permissions_phpbb.php",
+		"/C/Users/z/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap"
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 28.0
 	},
 	"find_in_files":
 	{
@@ -109,19 +109,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "forum/style.php",
+					"file": "/C/Users/z/Documents/GitHub/whatever/we.sublime-project",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 8316,
+						"buffer_size": 80,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								686,
-								686
+								0,
+								0
 							]
 						],
 						"settings":
@@ -129,11 +129,10 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
 						},
-						"translation.x": -0.0,
-						"translation.y": 405.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -144,7 +143,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 28.0
 	},
 	"input":
 	{
@@ -184,7 +183,7 @@
 	"project": "we.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 52.0
 	},
 	"save_all_on_build": true,
 	"select_file":

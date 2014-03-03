@@ -8,10 +8,12 @@
 	<title><?php wp_title('|', true, 'right'); ?></title>
 
 <?php wp_head(); ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/analyticstracking.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/wowhead.php") ?>
 </head>
 
 <body <?php body_class(); ?>>
-
+<!--<?php include_once("http://www.we-guild.eu/analyticstracking.php") ?> -->
 <?php themezee_wrapper_before(); // hook before #wrapper ?>
 <div id="wrapper">
 	
