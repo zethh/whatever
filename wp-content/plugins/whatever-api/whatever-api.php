@@ -21,23 +21,20 @@ require_once "/home/zethh/php/vendor/autoload.php";
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
-$paths = array("/path/to/entity-files");
+$paths = array(plugin_dir_url( __FILE__ ) . '/classes');
 $isDevMode = false;
-$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
+
 // the connection configuration
 $dbParams = array(
     'driver'   => 'pdo_mysql',
-    'user'     => 'zethhwe',
+    'user'     => 'zethh',
     'password' => 'X3lmeromeroX',
     'dbname'   => 'whatever_db',
 );
 
-
 function add_to_admin_menu()
 {
 
-	$file = dirname(__FILE__) . '/index.php';
-  	$plugin_dir = plugin_dir_url($file);
 	add_menu_page('Whatever admin API', 'Whatever', 'manage_options', 'whatever-api-top-level', 'whatever_api_admin', plugin_dir_url( __FILE__ ) . "/images/wow_icon.png", 0);
 	add_submenu_page('whatever-api-top-level','Item settings', 'Item settings', 'manage_options', 'whatever-item-settings', 'whatever_item_settings');
 }
@@ -48,7 +45,7 @@ function whatever_api_admin()
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
 	echo '<div class="wrap">';
-	parse_wowhead("wow");
+	//parse_wowhead("wow");
 	echo '<p>Here is where the form would go if I actually had options.</p>';
 	echo '</div>';
 }
@@ -70,17 +67,25 @@ function whatever_item_settings_get_items()
 function whatever_item_settings()
 {
 	$submit = (isset($_POST['suchform'])) ? true : false;
-
-	if (!isset($_POST['suchform'])){
-		echo '<div id="wrap"><form method="POST" action="" name="suchform"><input type="hidden" name="action" value="we_get_items" />URL for boss<input type="text name="boss-url" /><br>
-		Boss name<input type="text name="boss-name"/><br> <input type="submit" name="submit" value="submit"/></form></div>';
+	
+	if (empty($_REQUEST['action'])){
+		?>
+		<div id="wrap">
+			<form method="post" name="suchform">
+			<input type="hidden" name="action" value="we_get_items" >
+			URL for boss<input type="text" name="boss-url"><br>
+			Boss name<input type="text" name="boss-name"><br> 
+			<input type="submit" name="submit" value="submit">
+			</form>
+		</div>
+		<?php
 	}
 	else{
-		echo $_POST['boss-url'] . '<br>' . $_POST['boss-name'];
-		//get_items_for_boss($_POST['boss-url'], $_POST['boss-name']);
+		if ($_REQUEST['action'] == 'we_get_items'){
+			get_items_for_boss($_POST['boss-url'], $_POST['boss-name']);
+		}
 	}
-	echo $_POST['boss-url'] . '<br>' . $_POST['boss-name'];
-	//
+
 }
 
 function such_test($url = "http://eu.battle.net/api/wow/data/item/classes")
@@ -94,58 +99,6 @@ function such_test($url = "http://eu.battle.net/api/wow/data/item/classes")
     	echo $item['name'] . "<br>";
 
     }
-}
-
-function parse_wowhead($url)
-{
-	$url = "http://www.wowhead.com/npc=71543#drops:mode=h25";
-
-	$ch = curl_init();
-
-	curl_setopt($ch, CURLOPT_URL, $url);
-
-	$userAgent = "Firefox (WindowsXP) - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6";
-
-	curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
-
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-	$response = curl_exec($ch);
-
-	curl_close($ch);
-
-	$html = $response;
-
-	libxml_use_internal_errors(true);
-
-	libxml_clear_errors();
-
-	$doc = new DOMDocument();
-
-	$doc->loadHTML($html);
-
-	$links = $doc->getElementsByTagName('a');
-
-	$itemIds = array();
-
-	foreach ($links as $element) {
-
-		echo $element->getAttribute('href') . "<br>";
-
-		$itemId = preg_replace("/(.items=)(\d*)|(.*)/", "$2", $element->getAttribute('href'));
-
-		if ($itemId != ""){
-
-			if (!in_array($itemId, $itemIds)){
-
-				array_push($itemIds, $itemId);
-				echo $itemid . "<br>";
-
-			}
-		}
-	}
-
-	return $itemIds;
 }
 
 /*
@@ -177,7 +130,7 @@ function get_items_for_boss($url, $boss_name)
 
 	foreach ($items as $item) {
 
-		echo $item . "<br>";
+		echo "<a href='http://www.wowhead.com/item=" . $item . "'>item</a><br>";
 	}
 	echo count($items);
 }
@@ -231,7 +184,7 @@ function get_items_from_url($url)
 
 	$links = $doc->getElementsByTagName('a');
 
-	$list = $doc->getElementById('tab-drops-item-chest');
+	$list = $doc->getElementById('tab-drops-item');
 
 	$lists =  $list->getElementsByTagName('ul');
 
@@ -293,49 +246,6 @@ function get_items_from_url($url)
 	}
 
 	return $itemIds;
+	
 }
-
-// class Boss
-// {
-// 	protected $id;
-// 	protected $name;
-// 	protected $raid_zone
-// 	protected $lfr_part;
-// 	protected $boss_number
-// }
-
-// class Item
-// {
-// 	protected $id;
-// 	protected $name;
-// 	protected $boss_ids;
-// 	protected $item_type;
-// }
-
-// class RaidZone
-// {
-// 	protected $id;
-// 	protected $name;
-// }
-
-// class Kills
-// {
-// 	protected $boss_id;
-// 	protected $kills;
-// }
-
-// class Class
-// {
-// 	protected $id;
-// 	protected $name;
-// }
-
-// class Spec
-// {
-// 	protected $id;
-// 	protected $class_id;
-// 	protected $name;
-// 	protected $item_types;
-// }
-
 ?>
