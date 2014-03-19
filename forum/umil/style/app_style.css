@@ -1,0 +1,2 @@
+td {width: 300px; height: 40px;}
+td + td {width: 500px;}
