@@ -20,7 +20,6 @@ if ( !defined('IN_PHPBB') && !defined('ABSPATH') ) {
 	exit;
 }
 
-
 /**
  * Inserts the commenter's avatar
  * @param bool $default Use default avatars if no avatar is present? Defaults to true
@@ -334,6 +333,7 @@ function get_wpu_unreadposts() {
 		$fStateChanged = $phpbbForum->foreground();
 		$user_id = $phpbbForum->get_userdata('user_id');
 		$user_reg = $phpbbForum->get_userdata('user_regdate');
+		$user_lastmark = $phpbbForum->get_userdata('user_lastmark');
 		$sql_array = array(
 			'SELECT'		=> 'COUNT(t.topic_id) as total, t.topic_last_post_time, tt.mark_time as topic_mark_time, ft.mark_time as forum_mark_time',
 
@@ -350,7 +350,8 @@ function get_wpu_unreadposts() {
 				),
 			),
 
-			'WHERE'			=> " t.topic_last_post_time > $user_reg AND
+			'WHERE'			=> " t.topic_last_post_time > $user_reg AND 
+				t.topic_last_post_time > $user_lastmark AND
 				((tt.mark_time IS NOT NULL AND t.topic_last_post_time > tt.mark_time) OR
 				(tt.mark_time IS NULL AND ft.mark_time IS NOT NULL AND t.topic_last_post_time > ft.mark_time) OR
 				(tt.mark_time IS NULL AND ft.mark_time IS NULL))
