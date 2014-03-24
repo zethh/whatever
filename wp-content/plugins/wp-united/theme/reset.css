@@ -58,6 +58,7 @@
 #wpucssmagic pre             { white-space: pre }
 #wpucssmagic button, #wpucssmagic textarea,
 #wpucssmagic input, #wpucssmagic select, #wpucssmagic label   { display: inline-block; width: 250px; }
+#wpucssmagic input[type=checkbox] {width: 20px;}
 #wpucssmagic big             { font-size: 1.17em }
 #wpucssmagic small, #wpucssmagic sub, #wpucssmagic sup { font-size: .83em }
 #wpucssmagic sub             { vertical-align: sub }
