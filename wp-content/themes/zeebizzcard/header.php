@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-	
+	<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/images/favicon.ico" type="image/x-icon" />
 	<title><?php wp_title('|', true, 'right'); ?></title>
 
 <?php wp_head(); ?>
