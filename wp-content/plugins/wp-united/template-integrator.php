@@ -126,7 +126,7 @@ function wpu_integrate_templates() {
 
 
 	//Don't use css magic on application page
-	if ($_SERVER['REQUEST_URI'] != "/forum/application.php")
+	if (!fnmatch("/forum/application.php*", $_SERVER['REQUEST_URI']))
 	{
 		// So, we generate the phpBB outer page if required, then we're all set.
 	if ($wpUnited->get_setting('cssMagic')) { 

@@ -125,9 +125,9 @@ class SimpleWowRecruitment extends WP_Widget {
 				$key = $class.'-'.$skill;
 				if (array_key_exists($key, $instance)) {
 					if ($instance[$key] > 0) {
-						echo '<img src="'.$this->urlImages.'/skills/'.$class.'_'.$skill.'.png" title="'.$this->formatSkill($skill).': '.$this->searchOptions[$instance[$key]].'"  style="vertical-align:middle;"/> ';
+						echo '<a href="http://www.we-guild.eu/forum/application.php?character_class=' . $class . '"><img src="'.$this->urlImages.'/skills/'.$class.'_'.$skill.'.png" title="'.$this->formatSkill($skill).': '.$this->searchOptions[$instance[$key]].'"  style="vertical-align:middle;"/></a>';
 					} else {
-						echo '<img src="'.$this->urlImages.'/skills/'.$class.'_'.$skill.'.png" title="'.$this->formatSkill($skill).': '.$this->searchOptions[$instance[$key]].'"  style="vertical-align:middle; filter:alpha(opacity=15); -moz-opacity: 0.15; opacity: 0.15;"/> ';
+						echo '<a href="http://www.we-guild.eu/forum/application.php?character_class=' . $class . '"><img src="'.$this->urlImages.'/skills/'.$class.'_'.$skill.'.png" title="'.$this->formatSkill($skill).': '.$this->searchOptions[$instance[$key]].'"  style="vertical-align:middle; filter:alpha(opacity=15); -moz-opacity: 0.15; opacity: 0.15;"/></a> ';
 					}
 				}
 			}

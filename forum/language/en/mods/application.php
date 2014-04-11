@@ -40,7 +40,7 @@ $lang = array_merge($lang, array(
 	'APPLICATION_MESSAGE'			=> '',
 	'APPLICATION_SEND'				=> 'Your application has been posted. You may view it in the applications section of the forum. Your application is only visible to yourself and members of the guild. You should have a response within a week, but usually earlier.',
 	'APPLICATION_PAGETITLE'			=> 'Application - Whatever',
-	'APPLICATION_WELCOME_MESSAGE'	=> 'OPEN - Recruiting for Warlords of Draenor<br /><br />
+	'APPLICATION_WELCOME_MESSAGE'	=> '<br/>OPEN - Recruiting for Warlords of Draenor<br /><br />
 										We always consider exceptional applications of all classes, even if we are not actively seeking said class.<br /><br />
 										<b>Progression Raid Schedule</b><br />
 										Monday: 20:00 - 00:00<br />

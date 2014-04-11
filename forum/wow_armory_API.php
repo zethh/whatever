@@ -9,7 +9,7 @@ function editorFor($url, $path, $attr, $name, $default)
 
     if (!$list){
 
-        $editor = '<input type="text" name="' . $name . '" />';
+        $editor = '<input type="text" name="' . $name . '" value="' . $default . '"/>';
 
     }else{
 
@@ -17,7 +17,7 @@ function editorFor($url, $path, $attr, $name, $default)
 
         foreach($list[$path] as $item) {
 
-        	if ($item[$attr] == $default){
+        	if (!strcasecmp(str_replace(" ", "", $item[$attr]), $default)){
 
         		$editor .= "<option selected='" . $item[$attr] . "'>";
 
@@ -45,7 +45,7 @@ function editorForClass($name, $default = "")
 
 	$attr = "name";
 
-	return editorFor($url, $path, $attr, $name, $class);
+	return editorFor($url, $path, $attr, $name, $default);
 }
 
 function editorForRealm($name, $default = "")

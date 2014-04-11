@@ -123,7 +123,7 @@ $template->assign_vars(array(
 	));
 	
 $template->set_filenames(array(
-    'body' => 'appform_body.html',
+    'body' => 'appform_body.php',
 ));
 
 page_footer();
