@@ -41,8 +41,7 @@ class WPU_Login_User_info_Widget extends WP_Widget {
 		$loginForm = $instance['login-form'];
 		$rankBlock = $instance['rank'];
 		$newPosts = $instance['new'];
-		$unreadPosts = $instance['unread'];
-		$write = $instance['write'];
+		$unreadPosts = $instance['unread'];		$write = $instance['write'];
 		$admin = $instance['admin'];
 
 		if ( !function_exists('wpu_login_user_info') ) return;
@@ -66,8 +65,7 @@ class WPU_Login_User_info_Widget extends WP_Widget {
 		$instance['login-form'] = (strip_tags(stripslashes($new_instance['login-form'])) == 'login-form')? 1 : 0;
 		$instance['rank'] = (strip_tags(stripslashes($new_instance['rank'])) == 'rank')? 1 : 0;
 		$instance['new'] = (strip_tags(stripslashes($new_instance['new'])) == 'new')? 1 : 0;
-		$instance['unread'] = (strip_tags(stripslashes($new_instance['unread'])) == 'unread')? 1 : 0;
-		$instance['write'] = (strip_tags(stripslashes($new_instance['write'])) == 'write')? 1 : 0;
+		$instance['unread'] = (strip_tags(stripslashes($new_instance['unread'])) == 'unread')? 1 : 0;		$instance['write'] = (strip_tags(stripslashes($new_instance['write'])) == 'write')? 1 : 0;
 		$instance['admin'] = (strip_tags(stripslashes($new_instance['admin'])) == 'admin')? 1 : 0;
 
 		return $instance;
@@ -81,8 +79,7 @@ class WPU_Login_User_info_Widget extends WP_Widget {
 			'title-logged-out'=> __('You are not logged in.', 'wp-united'),
 			'rank'=>1, 
 			'new'=>1, 
-			'unread'=> 1,
-			'write' => 0,
+			'unread'=>1, 			'write' => 0,
 			'admin' => 0,
 			'login-form'=>1
 		));
@@ -92,8 +89,7 @@ class WPU_Login_User_info_Widget extends WP_Widget {
 		 
 		$rank= (!empty($instance['rank'])) ? 'checked="checked"' : '';
 		$new = (!empty($instance['new'])) ? 'checked="checked"' : '';
-		$unread = (!empty($instance['unread'])) ? 'checked="checked"' : '';
-		$write = (!empty($instance['write'])) ? 'checked="checked"' : '';
+		$unread = (!empty($instance['unread'])) ? 'checked="checked"' : '';		$write = (!empty($instance['write'])) ? 'checked="checked"' : '';
 		$admin = (!empty($instance['admin'])) ? 'checked="checked"' : '';
 		$loginForm = (!empty($instance['login-form'])) ? 'checked="checked"' : '';
 		?>
@@ -102,8 +98,7 @@ class WPU_Login_User_info_Widget extends WP_Widget {
 		<p><label for="<?php echo $this->get_field_id('title-logged-out'); ?>"><?php _e('You are not logged in.', 'wp-united'); ?> <input class="widefat" id="<?php echo $this->get_field_id('title-logged-out'); ?>" name="<?php echo $this->get_field_name('title-logged-out'); ?>" type="text" value="<?php echo esc_attr($titleLoggedOut); ?>" /></label></p>
 		<p><input id="<?php echo $this->get_field_id('rank'); ?>" name="<?php echo $this->get_field_name('rank'); ?>" type="checkbox" value="rank" <?php echo $rank ?> /> <label for="<?php echo $this->get_field_id('rank'); ?>"><?php _e('Show rank title &amp; image?', 'wp-united'); ?></label></p>
 		<p><input id="<?php echo $this->get_field_id('new'); ?>" name="<?php echo $this->get_field_name('new'); ?>" type="checkbox" value="new"  <?php echo $new ?> /> <label for="<?php echo $this->get_field_id('new'); ?>"><?php _e('Show new posts?', 'wp-united');?></label></p>
-		<p><input id="<?php echo $this->get_field_id('unread'); ?>" name="<?php echo $this->get_field_name('unread'); ?>" type="checkbox" value="unread"  <?php echo $unread ?> /> <label for="<?php echo $this->get_field_id('unread'); ?>"><?php _e('Show unread posts?', 'wp-united');?></label></p>
-		<p><input id="<?php echo $this->get_field_id('write'); ?>" name="<?php echo $this->get_field_name('write'); ?>" type="checkbox" value="write" <?php echo $write ?> /> <label for="<?php echo $this->get_field_id('write'); ?>"><?php _e('Show write post link?', 'wp-united'); ?></label></p>
+		<p><input id="<?php echo $this->get_field_id('unread'); ?>" name="<?php echo $this->get_field_name('unread'); ?>" type="checkbox" value="unread"  <?php echo $unread ?> /> <label for="<?php echo $this->get_field_id('unread'); ?>"><?php _e('Show unread posts?', 'wp-united');?></label></p>		<p><input id="<?php echo $this->get_field_id('write'); ?>" name="<?php echo $this->get_field_name('write'); ?>" type="checkbox" value="write" <?php echo $write ?> /> <label for="<?php echo $this->get_field_id('write'); ?>"><?php _e('Show write post link?', 'wp-united'); ?></label></p>
 		<p><input id="<?php echo $this->get_field_id('admin'); ?>" name="<?php echo $this->get_field_name('admin'); ?>" type="checkbox" value="admin" <?php echo $admin ?> /> <label for="<?php echo $this->get_field_id('admin'); ?>"><?php _e('Show Admin link?', 'wp-united'); ?></label></p>
 		<p><input id="<?php echo $this->get_field_id('login-form'); ?>" name="<?php echo $this->get_field_name('login-form'); ?>" type="checkbox" value="login-form" <?php echo $loginForm ?> /> <label for="<?php echo $this->get_field_id('login-form'); ?>"><?php _e('Show phpBB login form if logged out?', 'wp-united'); ?></label></p>
 		

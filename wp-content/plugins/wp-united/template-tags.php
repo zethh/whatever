@@ -20,6 +20,7 @@ if ( !defined('IN_PHPBB') && !defined('ABSPATH') ) {
 	exit;
 }
 
+
 /**
  * Inserts the commenter's avatar
  * @param bool $default Use default avatars if no avatar is present? Defaults to true
@@ -394,6 +395,7 @@ function get_wpu_unreadposts() {
 		}
 	}
 }
+
 /**
  * Displays a link to search phpBB posts since the user's last visit (together with number of posts)
  * @param string args
@@ -692,7 +694,7 @@ function get_wpu_useronlinelist($args = '') {
 /**
  * Displays info about the current user, or a login form if they are logged out
  */
-function wpu_login_user_info($args) {
+	function wpu_login_user_info($args) {
 	echo get_wpu_login_user_info($args);
 }
 
@@ -704,7 +706,7 @@ function wpu_login_user_info($args) {
 function get_wpu_login_user_info($args) {
 	global $user_ID, $db, $auth, $phpbbForum, $wpUnited, $phpEx, $config;
 	
-	$defaults = array('before' => '<li>', 'after' => '</li>', 'showPMs' => 0, 'showLoginForm' => 1, 'showRankBlock' => 1, 'showNewPosts' => 1,  'showUnreadPosts' => 1, 'showWriteLink' => 1, 'showAdminLinks' => 1, 'autoLogin' => 1);
+	$defaults = array('before' => '<li>', 'after' => '</li>', 'showPMs' => 1, 'showLoginForm' => 1, 'showRankBlock' => 1, 'showNewPosts' => 1, 'showWriteLink' => 1, 'showAdminLinks' => 1, 'autoLogin' => 1);
 	extract(_wpu_process_args($args, $defaults));
 
 	$ret = '';
@@ -730,12 +732,9 @@ function get_wpu_login_user_info($args) {
 		if ( $showNewPosts ) {
 			$ret .= $before .  get_wpu_newposts_link() . $after;
 		}
-
 		if ( $showUnreadPosts ){
 			$ret .= $before . get_wpu_unreadposts_link() . $after;
-		}
-		
-		$fStateChanged = $phpbbForum->foreground();
+		}		$fStateChanged = $phpbbForum->foreground();
 		$admin = $auth->acl_get('a_');
 		$autoLogin = $config['allow_autologin'];
 		$PMs = $phpbbForum->get_user_pm_details();
